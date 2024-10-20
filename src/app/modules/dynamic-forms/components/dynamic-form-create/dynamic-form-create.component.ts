@@ -149,14 +149,5 @@ export class DynamicFormCreateComponent {
     }
   }
 
-  onCheckBoxChecked( e : any, formName : string ){
-    if(e.target.checked){
-      this.selectedCheckBoxArr.push(parseInt(e.target.value));
-      this.dynamicForm.get(formName)?.setValue(this.selectedCheckBoxArr); 
-    }else{
-      this.selectedCheckBoxArr.filter(item => item == parseInt(e.target.value));
-    }
-  }
-
 
 }

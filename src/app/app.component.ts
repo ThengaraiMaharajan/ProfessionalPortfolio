@@ -11,6 +11,9 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 })
 export class AppComponent implements OnInit {
 
+  isSidebarVisible = false;
+  isUserLoggedIn : boolean = false;
+
   constructor(
     private analytics : AnalyticsService
   ){}
@@ -26,6 +29,10 @@ export class AppComponent implements OnInit {
     const result = await fp.get();
     const fingerprint = result.visitorId;
     this.analytics.setAnalytics('Application Loaded','Initialization','User View your website',`${fingerprint+'-Viewed your website'}`,fingerprint);
+  }
+
+  toggleSidebar() {
+    this.isSidebarVisible = !this.isSidebarVisible;
   }
 
 }

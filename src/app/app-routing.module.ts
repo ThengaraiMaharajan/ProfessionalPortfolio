@@ -3,16 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path : 'dynamicForms',
+    path : 'dynamic-forms',
     loadChildren : () => import('./modules/dynamic-forms/dynamic-forms.module').then(m => m.DynamicFormsModule)
   },
   {
-    path : 'timeLines',
+    path : 'time-lines-tracker',
     loadChildren : () => import('./modules/time-line-tracker/time-line-tracker.module').then(m => m.TimeLineTrackerModule)
   },
   {
-    path : 'resumeBuilder',
+    path : 'resume-builder',
     loadChildren : () => import('./modules/resume-builder/resume-builder.module').then(m => m.ResumeBuilderModule)
+  },
+  {
+    path : 'profile',
+    loadChildren : () => import('./modules/professional-portfolio/professional-portfolio.module').then(m => m.ProfessionalPortfolioModule)
   }
 ];
 

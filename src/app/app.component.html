@@ -1,20 +1,25 @@
-<router-outlet></router-outlet>
-<div class="container">
-    <div class="row justify-content-center align-items-center">
-        <div class="col-4 border d-flex justify-content-center align-items-center">
-            <div class="m-5 p-5" >
-                <button class="btn btn-primary btn-sm" routerLink="/dynamicForms" >Dynamic Forms</button>
-            </div>
+<div class="main-container" >
+    <button class="toggle-button" (click)="toggleSidebar()">
+      <em class="fa fa-bars fa-1x" aria-hidden="true" ></em>
+    </button>
+    <div class="top-menu-bar" >
+    </div>
+    <div class="side-menu-bar" [class.visible]="isSidebarVisible">
+        <br>
+        <br>
+        <div>
+            <button class="btn btn-primary btn-sm" routerLink="/dynamic-forms" >Dynamic Forms</button>
         </div>
-        <div class="col-4 border d-flex justify-content-center align-items-center">
-            <div class="m-5 p-5" >
-                <button class="btn btn-primary btn-sm" routerLink="/resumeBuilder" >Resume Builder</button>
-            </div>
+        <div>
+            <button class="btn btn-primary btn-sm" routerLink="/resume-builder" >Resume Builder</button>
         </div>
-        <div class="col-4 border d-flex justify-content-center align-items-center">
-            <div class="m-5 p-5" >
-                <button class="btn btn-primary btn-sm" routerLink="/timeLines" >Time Line Tracker</button>
-            </div>
+        <div>
+            <button class="btn btn-primary btn-sm" routerLink="/time-lines-tracker" >Time Line Tracker</button>
         </div>
     </div>
-</div>
+    <div>
+      <div>
+        <router-outlet />
+      </div>
+    </div>
+  </div>

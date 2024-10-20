@@ -40,7 +40,7 @@
                         <option value="date">date</option>
                         <option value="email">email</option>
                         <option value="radio">radio</option>
-                        <!-- <option value="checkbox">checkbox</option> -->
+                        <option value="checkbox">checkbox</option>
                         <option value="select">select</option>
                       </select>
                     </div>
@@ -198,56 +198,15 @@
                   </span>
                 </div>
               </span>
-              <!--type="single checkbox"-->
-              <span *ngIf="formField.type == 'checkboxSingle'">
-                <div class="form-check">
-                  <span *ngFor="let option of formField.options">
-                    <input
-                      class="m-1"
-                      type="checkbox"
-                      value="{{ option.valueLabel }}"
-                      name="{{ formField.name }}"
-                      formControlName="{{ formField.name }}"
-                      id="{{ option.valueLabel }}"
-                    />
-                    <label class="form-check-label" for="{{ option.valueLabel }}">
-                      {{ option.valueLabel }}
-                    </label>
-                    <br />
-                  </span>
-                </div>
-              </span>
-              <!--type="terms and conditions checkbox"-->
-              <span *ngIf="formField.type == 'termsandconditions'">
-                <div class="form-check">
-                  <span *ngFor="let option of formField.options">
-                    <input
-                      class="m-1"
-                      type="checkbox"
-                      value="{{ option.valueLabel }}"
-                      name="{{ formField.name }}"
-                      formControlName="{{ formField.name }}"
-                      id="{{ option.id }}"
-                    />
-                    <label class="form-check-label" for="{{ option.valueLabel }}">
-                      <a href="{{ formField.termsLink }}">{{ option.valueLabel }}</a>
-                    </label>
-                    <br />
-                  </span>
-                </div>
-              </span>
-              <!--type="multiple checkbox"-->
-              <span *ngIf="formField.type == 'checkboxMultiple'">
+              <!--type="checkbox"-->
+              <span *ngIf="formField.type == 'checkbox'">
                 <div class="form-check">
                   <span *ngFor="let option of formField.options">
                     <input
                       class="m-1"
                       type="checkbox"
                       value="{{ option.id }}"
-                       
-                       
                       id="{{ option.id }}"
-                      (input)="onCheckBoxChecked( $event, formField.name)"
                     />
                     <label class="form-check-label" for="{{ option.valueLabel }}">
                       {{ option.valueLabel }}</label
