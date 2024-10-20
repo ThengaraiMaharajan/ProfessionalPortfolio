@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from './services/analytics.service';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -13,6 +12,8 @@ export class AppComponent implements OnInit {
 
   isSidebarVisible = false;
   isUserLoggedIn : boolean = false;
+
+  backgroundAnimationNo : number = 5;
 
   constructor(
     private analytics : AnalyticsService
@@ -33,6 +34,10 @@ export class AppComponent implements OnInit {
 
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
+  }
+  
+  animationStyleChange(animationID : number){
+    this.backgroundAnimationNo = animationID;
   }
 
 }

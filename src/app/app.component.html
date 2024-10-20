@@ -1,25 +1,124 @@
-<div class="main-container" >
-    <button class="toggle-button" (click)="toggleSidebar()">
-      <em class="fa fa-bars fa-1x" aria-hidden="true" ></em>
-    </button>
-    <div class="top-menu-bar" >
+<div class="full-size-border vh-100 vw-100 position-relative overflow-hidden">
+    <!-- Background design -->
+    <div class="bottom-layer">
+
+      <!-- Animation One -->
+      <div *ngIf="backgroundAnimationNo==1" class="circles"></div>
+
+      <!-- Animation Two -->
+      <div *ngIf="backgroundAnimationNo==2" class="flower-container" ngClass="" >
+        <div class="flower-inner-container">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+      </div>
+
+      <!-- Animation Three -->
+      <div *ngIf="backgroundAnimationNo==3" class="gradient-bg"></div>
+
+      <!-- Animation Four -->
+      <div *ngIf="backgroundAnimationNo==4" class="circles"></div>
+
+      <!-- Animation Four -->
+      <div *ngIf="backgroundAnimationNo==4" class="flower-container">
+        <div class="flower-inner-container">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+      </div>
+
+      <!--Animation Five-->
+      <div *ngIf="backgroundAnimationNo==5" class="area">
+        <ul class="cubes">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+      </div>
+
     </div>
-    <div class="side-menu-bar" [class.visible]="isSidebarVisible">
-        <br>
-        <br>
-        <div>
-            <button class="btn btn-primary btn-sm" routerLink="/dynamic-forms" >Dynamic Forms</button>
+
+    <!-- Top Layer (Content) -->
+    <div class="top-layer">
+      <div class="vh-100 vw-100 position-relative" >
+        <button class="toggle-button" (click)="toggleSidebar()">
+          <div class="m-1 border toggle-lines" ></div>
+          <div class="m-1 border toggle-lines" ></div>
+          <div class="m-1 border toggle-lines" ></div>
+        </button>
+        <div class="top-menu-bar glass-card" >
+
+          <div class="row mt-2">
+            <div class="col-6">
+
+            </div>
+            <div class="col-6">
+              <div class="row justify-content-end">
+                <div class="col-3">
+                  <select [(ngModel)]="backgroundAnimationNo" class="form-select" >
+                    <option value="1">Animation 1</option>
+                    <option value="2">Animation 2</option>
+                    <option value="3">Animation 3</option>
+                    <option value="4">Animation 4</option>
+                    <option value="5">Animation 5</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
+        <div class="side-menu-bar glass-card" [class.visible]="isSidebarVisible"></div>
         <div>
-            <button class="btn btn-primary btn-sm" routerLink="/resume-builder" >Resume Builder</button>
+          <div class="pt-5" >
+            <router-outlet />
+          </div>
         </div>
-        <div>
-            <button class="btn btn-primary btn-sm" routerLink="/time-lines-tracker" >Time Line Tracker</button>
-        </div>
-    </div>
-    <div>
-      <div>
-        <router-outlet />
       </div>
     </div>
-  </div>
+</div>
