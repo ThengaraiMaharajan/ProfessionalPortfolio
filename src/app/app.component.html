@@ -6,7 +6,7 @@
       <div *ngIf="backgroundAnimationNo==1" class="circles"></div>
 
       <!-- Animation Two -->
-      <div *ngIf="backgroundAnimationNo==2" class="flower-container" ngClass="" >
+      <div *ngIf="backgroundAnimationNo==2" class="flower-container" [ngClass]="{'bg-primary':backgroundAnimationNo==2}" >
         <div class="flower-inner-container">
           <div class="square"></div>
           <div class="square"></div>
@@ -84,7 +84,7 @@
     </div>
 
     <!-- Top Layer (Content) -->
-    <div class="top-layer">
+    <div class="top-layer overflow-auto">
       <div class="vh-100 vw-100 position-relative" >
         <button class="toggle-button" (click)="toggleSidebar()">
           <div class="m-1 border toggle-lines" ></div>

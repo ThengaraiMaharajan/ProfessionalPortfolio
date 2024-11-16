@@ -10,7 +10,7 @@ import FingerprintJS from '@fingerprintjs/fingerprintjs';
 })
 export class AppComponent implements OnInit {
 
-  isSidebarVisible = false;
+  isSidebarVisible = true;
   isUserLoggedIn : boolean = false;
 
   backgroundAnimationNo : number = 5;

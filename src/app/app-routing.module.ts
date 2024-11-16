@@ -3,6 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '', 
+    redirectTo: 'profile',
+    pathMatch: 'full'
+  },
+  {
     path : 'dynamic-forms',
     loadChildren : () => import('./modules/dynamic-forms/dynamic-forms.module').then(m => m.DynamicFormsModule)
   },
@@ -17,6 +22,10 @@ const routes: Routes = [
   {
     path : 'profile',
     loadChildren : () => import('./modules/professional-portfolio/professional-portfolio.module').then(m => m.ProfessionalPortfolioModule)
+  },
+  {
+    path: '**',  // Wildcard route for any unmatched URL
+    redirectTo: 'profile'  // Redirect to profile
   }
 ];
 
