@@ -81,6 +81,10 @@
         </ul>
       </div>
 
+      <!--Animation Six-->
+      <div *ngIf="backgroundAnimationNo==6">
+      </div>
+
     </div>
 
     <!-- Top Layer (Content) -->
@@ -106,6 +110,7 @@
                     <option value="3">Animation 3</option>
                     <option value="4">Animation 4</option>
                     <option value="5">Animation 5</option>
+                    <option value="6">White Background</option>
                   </select>
                 </div>
               </div>
@@ -116,7 +121,9 @@
         <div class="side-menu-bar glass-card" [class.visible]="isSidebarVisible"></div>
         <div>
           <div class="pt-5" >
-            <router-outlet />
+            <main>
+              <router-outlet />
+            </main>
           </div>
         </div>
       </div>

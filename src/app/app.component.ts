@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   isSidebarVisible = true;
   isUserLoggedIn : boolean = false;
 
-  backgroundAnimationNo : number = 5;
+  backgroundAnimationNo!:number;
 
   constructor(
     private analytics : AnalyticsService
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     
     this.generateFingerPrint();
+    this.backgroundAnimationNo = Math.floor(Math.random() * 6) + 1;
 
   }
 
