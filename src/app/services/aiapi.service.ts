@@ -12,7 +12,8 @@ export class AIApiService {
   constructor() { 
 
     this.anthropic = new Anthropic({
-      apiKey: environment.claudeApiKey
+      apiKey: environment.claudeApiKey,
+      dangerouslyAllowBrowser: true
     });
 
   }
@@ -20,7 +21,7 @@ export class AIApiService {
   async sendMessage(message: string) {
     try {
       const response : any = await this.anthropic.messages.create({
-        model: 'claude-3-sonnet-20240229',
+        model: 'claude-3-5-sonnet-20241022',
         max_tokens: 1000,
         messages: [{ role: 'user', content: message }]
       });

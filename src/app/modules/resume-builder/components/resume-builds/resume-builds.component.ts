@@ -2,6 +2,8 @@ import { Component,OnInit,ViewChild, ElementRef } from '@angular/core';
 import { FormGroup,FormBuilder,FormArray, Validators } from '@angular/forms';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { AIApiService } from '../../../../services/aiapi.service';
+
 @Component({
   selector: 'app-resume-builds',
   templateUrl: './resume-builds.component.html',
@@ -30,7 +32,10 @@ export class ResumeBuildsComponent {
   languageFormValue : any;
   interestFormValue : any;
 
-  constructor(private fb : FormBuilder){}
+  constructor(
+    private fb : FormBuilder, 
+    private ai : AIApiService
+  ){}
 
   ngOnInit(): void {
     
@@ -75,6 +80,8 @@ export class ResumeBuildsComponent {
     this.interestForm = this.fb.group({
       interests: this.fb.array([this.createInterestGroup()])
     });
+
+    this.chatWithClaude();
 
   }
 
@@ -341,6 +348,17 @@ export class ResumeBuildsComponent {
       // Save PDF
       doc.save(this.userDetailsForm.value.name + ' Resume');
     });
+  }
+
+
+  async chatWithClaude() {
+    try {
+      console.log('Chatting with Claude...');
+      const response = await this.ai.sendMessage('Hello, Claude!');
+      console.log(response);
+    } catch (error) {
+      // Handle error
+    }
   }
 
 }
