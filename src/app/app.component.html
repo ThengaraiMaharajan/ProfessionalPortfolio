@@ -2,88 +2,7 @@
     <!-- Background design -->
     <div class="bottom-layer">
 
-      <!-- Animation One -->
-      <div *ngIf="backgroundAnimationNo==1" class="circles"></div>
-
-      <!-- Animation Two -->
-      <div *ngIf="backgroundAnimationNo==2" class="flower-container" [ngClass]="{'bg-primary':backgroundAnimationNo==2}" >
-        <div class="flower-inner-container">
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-        </div>
-      </div>
-
-      <!-- Animation Three -->
-      <div *ngIf="backgroundAnimationNo==3" class="gradient-bg"></div>
-
-      <!-- Animation Four -->
-      <div *ngIf="backgroundAnimationNo==4" class="circles"></div>
-
-      <!-- Animation Four -->
-      <div *ngIf="backgroundAnimationNo==4" class="flower-container">
-        <div class="flower-inner-container">
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-        </div>
-      </div>
-
-      <!--Animation Five-->
-      <div *ngIf="backgroundAnimationNo==5" class="area">
-        <ul class="cubes">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-      </div>
-
-      <!--Animation Six-->
-      <div *ngIf="backgroundAnimationNo==6">
-      </div>
+      
 
     </div>
 
@@ -97,25 +16,7 @@
         </button>
         <div class="top-menu-bar glass-card" >
 
-          <div class="row mt-2">
-            <div class="col-6">
 
-            </div>
-            <div class="col-6">
-              <div class="row justify-content-end">
-                <div class="col-3">
-                  <select [(ngModel)]="backgroundAnimationNo" class="form-select" >
-                    <option value="1">Animation 1</option>
-                    <option value="2">Animation 2</option>
-                    <option value="3">Animation 3</option>
-                    <option value="4">Animation 4</option>
-                    <option value="5">Animation 5</option>
-                    <option value="6">White Background</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
 
         </div>
         <div class="side-menu-bar glass-card" [class.visible]="isSidebarVisible"></div>
