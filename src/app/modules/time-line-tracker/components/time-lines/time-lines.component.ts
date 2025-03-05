@@ -1,5 +1,5 @@
-import { Component,ElementRef,Input,OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray , Validator} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import * as XLSX from 'xlsx';
 import { ExportToExcelService } from '../../services/export-to-excel.service';
 
@@ -10,8 +10,9 @@ import { ExportToExcelService } from '../../services/export-to-excel.service';
 })
 export class TimeLinesComponent {
 
-  title = 'timeLineTracker';
-  myForm!: FormGroup;
+  displayedColumns: string[] = ['index', 'eventName', 'eventDescription', 'formatedDate', 'pastOrFuture', 'dayCount'];
+
+  timeLineForm!: FormGroup;
   formValues : any;
   jsonData : any;
   canvas: any;
@@ -22,7 +23,7 @@ export class TimeLinesComponent {
   constructor(private fb : FormBuilder, private exportTotExcel : ExportToExcelService){}
   ngOnInit(): void {
 
-    this.myForm = this.fb.group({
+    this.timeLineForm = this.fb.group({
       name: [''],
       dob: [''],
       events: this.fb.array([])
@@ -31,7 +32,7 @@ export class TimeLinesComponent {
   }
 
   get events(): FormArray {
-    return this.myForm.get('events') as FormArray;
+    return this.timeLineForm.get('events') as FormArray;
   }
 
   addEvent() {
@@ -49,7 +50,7 @@ export class TimeLinesComponent {
   }
 
   onSubmit() {
-    this.formValues = this.myForm.value;
+    this.formValues = this.timeLineForm.value;
     this.formValues.events.forEach((userEvent : any) => {
       userEvent.pastOrFuture = this.isPastOrFuture(userEvent.eventDate);
       userEvent.formatedDate = this.formatDate(userEvent.eventDate);
@@ -77,19 +78,34 @@ export class TimeLinesComponent {
     console.log(this.jsonData);
   }
 
-  formatDate(inputDate : any) {
+  formatDate(inputDate: any): string {
+    if (!inputDate) {
+      return '';
+    }
     const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-    const parts = inputDate.split('-');
-    const day = parts[2];
-    const month = months[parseInt(parts[1], 10) - 1];
-    const year = parts[0];
-  
-    return `${day}-${month}-${year}`;
+    if (inputDate instanceof Date) {
+      const day = inputDate.getDate().toString().padStart(2, '0');
+      const month = months[inputDate.getMonth()];
+      const year = inputDate.getFullYear();
+      return `${day}-${month}-${year}`;
+    } else if (typeof inputDate === 'string') {
+      // Fallback: if date is a string in 'YYYY-MM-DD' format.
+      const parts = inputDate.split('-');
+      if (parts.length < 3) { return inputDate; }
+      const day = parts[2];
+      const month = months[parseInt(parts[1], 10) - 1];
+      const year = parts[0];
+      return `${day}-${month}-${year}`;
+    }
+    return '';
   }
 
-  isPastOrFuture(inputDate:any) {
+  isPastOrFuture(inputDate: any): string {
+    if (!inputDate) {
+      return '';
+    }
     const currentDate = new Date();
-    const providedDate = new Date(inputDate);
+    const providedDate = inputDate instanceof Date ? inputDate : new Date(inputDate);
   
     if (providedDate < currentDate) {
       return "past";
@@ -100,24 +116,21 @@ export class TimeLinesComponent {
     }
   }
   
-  calculateDaysDifference(dateString : any) {
+  calculateDaysDifference(dateValue: any): string {
+    if (!dateValue) {
+      return '';
+    }
     const currentDate = new Date();
-    const providedDate = new Date(dateString);
+    const providedDate = dateValue instanceof Date ? dateValue : new Date(dateValue);
   
-    // Calculate the difference in milliseconds
     const differenceInMs = providedDate.getTime() - currentDate.getTime();
-  
-    // Convert milliseconds to days
     const differenceInDays = Math.ceil(differenceInMs / (1000 * 60 * 60 * 24));
   
     if (differenceInDays < 0) {
-      // return { status: "past", days: Math.abs(differenceInDays) };
-      return 'past : '+Math.abs(differenceInDays)+' days ago';
+      return 'past : ' + Math.abs(differenceInDays) + ' days ago';
     } else if (differenceInDays > 0) {
-      // return { status: "future", days: differenceInDays };
-      return 'future : '+differenceInDays+' days to go';
+      return 'future : ' + differenceInDays + ' days to go';
     } else {
-      // return { status: "present", days: 0 };
       return 'present';
     }
   }
@@ -149,6 +162,13 @@ export class TimeLinesComponent {
     currentDate.setDate(currentDate.getDate() - days);
   
     return currentDate;
+  }
+
+  applyFilter(filterValue: any, column: string) {
+    this.formValues.events.filterPredicate = (data: any, filter: string) => {
+      return data[column]?.toLowerCase().includes(filter.trim().toLowerCase());
+    };
+    this.formValues.events.filter = filterValue.value.trim().toLowerCase();
   }
   
 
