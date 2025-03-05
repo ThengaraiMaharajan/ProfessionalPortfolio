@@ -1,39 +1,108 @@
-/* Custom styles for the TimeLines component */
+/* Define custom theme variables */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --background-color: #f4f7f9;
+  --card-background: #ffffff;
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+  --font-family: 'Roboto', sans-serif;
+}
 
+/* Global container styling */
 .custom-container {
-    padding: 20px;
-  }
-  
-  .mat-form-field {
-    width: 100%;
-  }
-  
-  .event-form-group {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f7f7f7;
-  }
-  
-  .table-container {
-    margin-top: 20px;
-  }
-  
-  .file-data-list {
-    list-style: none;
-    padding-left: 0;
-  }
-  
-  .file-data-list li {
-    margin-bottom: 15px;
+  padding: 20px;
+  background-color: var(--background-color);
+  font-family: var(--font-family);
+}
+
+/* Style for Angular Material cards */
+mat-card {
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  background-color: var(--card-background);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow var(--transition-speed);
+}
+
+mat-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Angular Material form field styling */
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: var(--primary-color);
+}
+
+/* Button styling for consistency */
+button[mat-raised-button] {
+  text-transform: none;
+  font-weight: 500;
+  transition: background-color var(--transition-speed);
+}
+
+button[mat-raised-button]:hover {
+  opacity: 0.9;
+}
+
+/* Enhanced table styling */
+table.mat-elevation-z8 {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+table.mat-elevation-z8 th,
+table.mat-elevation-z8 td {
+  padding: 12px;
+  text-align: left;
+}
+
+table.mat-elevation-z8 th.mat-sort-header-sorted {
+  color: var(--primary-color);
+}
+
+/* Paginator adjustments */
+.mat-paginator {
+  margin-top: 15px;
+}
+
+/* File view toggle button styling */
+.btn-outline-primary {
+  margin: 0 5px;
+}
+
+/* Styling for card view of file data */
+.file-data-list {
+  list-style: none;
+  padding: 0;
+}
+
+.file-data-list li {
+  background-color: var(--card-background);
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition-speed);
+}
+
+.file-data-list li:hover {
+  transform: translateY(-3px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .custom-container {
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
   }
-  
-  .text-end {
-    text-align: right;
+  mat-card {
+    margin: 10px;
   }
-  
+}
