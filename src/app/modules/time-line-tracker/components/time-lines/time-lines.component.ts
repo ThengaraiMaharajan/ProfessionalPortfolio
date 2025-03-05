@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 import * as XLSX from 'xlsx';
 import { ExportToExcelService } from '../../services/export-to-excel.service';
 
@@ -22,6 +23,7 @@ export class TimeLinesComponent implements OnInit, AfterViewInit {
   showFileDataDisplay: boolean = false;
 
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private fb: FormBuilder, private exportTotExcel: ExportToExcelService) {}
 
@@ -34,8 +36,8 @@ export class TimeLinesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Set the sort after the view is initialized.
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   get events(): FormArray {
@@ -63,6 +65,7 @@ export class TimeLinesComponent implements OnInit, AfterViewInit {
       userEvent.formatedDate = this.formatDate(userEvent.eventDate);
       userEvent.dayCount = this.calculateDaysDifference(userEvent.eventDate);
     });
+    // Assign the events to the MatTableDataSource for pagination, sorting, and filtering.
     this.dataSource.data = this.formValues.events;
     this.exportTotExcel.exportToExcel([this.formValues], 'form_data');
     this.formSubmittedDisplayData = true;
@@ -97,7 +100,6 @@ export class TimeLinesComponent implements OnInit, AfterViewInit {
       const year = inputDate.getFullYear();
       return `${day}-${month}-${year}`;
     } else if (typeof inputDate === 'string') {
-      // Fallback: if date is a string in 'YYYY-MM-DD' format.
       const parts = inputDate.split('-');
       if (parts.length < 3) { return inputDate; }
       const day = parts[2];
@@ -114,7 +116,6 @@ export class TimeLinesComponent implements OnInit, AfterViewInit {
     }
     const currentDate = new Date();
     const providedDate = inputDate instanceof Date ? inputDate : new Date(inputDate);
-  
     if (providedDate < currentDate) {
       return "past";
     } else if (providedDate > currentDate) {
@@ -130,10 +131,8 @@ export class TimeLinesComponent implements OnInit, AfterViewInit {
     }
     const currentDate = new Date();
     const providedDate = dateValue instanceof Date ? dateValue : new Date(dateValue);
-  
     const differenceInMs = providedDate.getTime() - currentDate.getTime();
     const differenceInDays = Math.ceil(differenceInMs / (1000 * 60 * 60 * 24));
-  
     if (differenceInDays < 0) {
       return 'past : ' + Math.abs(differenceInDays) + ' days ago';
     } else if (differenceInDays > 0) {
@@ -143,6 +142,9 @@ export class TimeLinesComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Applies a filter on the mat table based on the input value and specified column.
+   */
   applyFilter(filterEvent: any, column: string) {
     this.dataSource.filterPredicate = (data: any, filter: string) => {
       return data[column] && data[column].toLowerCase().includes(filter);

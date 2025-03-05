@@ -73,9 +73,9 @@
                     <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
                   </ng-container>
             
-                  <!-- Event Name Column (Sortable) -->
+                  <!-- Event Name Column with Filter and Sorting -->
                   <ng-container matColumnDef="eventName">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> 
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
                       <p>Name</p>
                       <p>
                         <input class="tb-i-form-control" matInput (keydown)="$event.stopPropagation()"
@@ -91,7 +91,7 @@
                     <td mat-cell *matCellDef="let element">{{ element.eventDescription }}</td>
                   </ng-container>
             
-                  <!-- Formatted Date Column (Sortable) -->
+                  <!-- Formatted Date Column with Sorting -->
                   <ng-container matColumnDef="formatedDate">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
                     <td mat-cell *matCellDef="let element">{{ element.formatedDate }}</td>
@@ -103,7 +103,7 @@
                     <td mat-cell *matCellDef="let element">{{ element.pastOrFuture }}</td>
                   </ng-container>
             
-                  <!-- Day Count Column (Sortable) -->
+                  <!-- Day Count Column with Sorting -->
                   <ng-container matColumnDef="dayCount">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Day Count</th>
                     <td mat-cell *matCellDef="let element">{{ element.dayCount }}</td>
@@ -112,11 +112,15 @@
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
                 </table>
+                
+                <!-- MatPaginator for Pagination -->
+                <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
               </div>
               <p *ngIf="!dataSource.data || dataSource.data.length === 0" class="text-center">
                 Oops, you haven't entered any events. Please add events and submit again.
               </p>
             </mat-card>
+            
             
           </div>
           
