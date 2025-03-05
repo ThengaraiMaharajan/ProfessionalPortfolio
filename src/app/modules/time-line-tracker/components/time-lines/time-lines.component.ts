@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -11,7 +11,7 @@ import { ExportToExcelService } from '../../services/export-to-excel.service';
   templateUrl: './time-lines.component.html',
   styleUrls: ['./time-lines.component.css']
 })
-export class TimeLinesComponent implements OnInit, AfterViewInit {
+export class TimeLinesComponent implements OnInit {
 
   displayedColumns: string[] = ['index', 'eventName', 'eventDescription', 'formatedDate', 'pastOrFuture', 'dayCount'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
@@ -22,8 +22,17 @@ export class TimeLinesComponent implements OnInit, AfterViewInit {
   formSubmittedDisplayData: boolean = false;
   showFileDataDisplay: boolean = false;
 
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
+    if (paginator) {
+      this.dataSource.paginator = paginator;
+    }
+  }
+
+  @ViewChild(MatSort) set sort(sort: MatSort) {
+    if (sort) {
+      this.dataSource.sort = sort;
+    }
+  }
 
   constructor(private fb: FormBuilder, private exportTotExcel: ExportToExcelService) {}
 
@@ -33,11 +42,6 @@ export class TimeLinesComponent implements OnInit, AfterViewInit {
       dob: [''],
       events: this.fb.array([])
     });
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
 
   get events(): FormArray {
@@ -65,7 +69,6 @@ export class TimeLinesComponent implements OnInit, AfterViewInit {
       userEvent.formatedDate = this.formatDate(userEvent.eventDate);
       userEvent.dayCount = this.calculateDaysDifference(userEvent.eventDate);
     });
-    // Assign the events to the MatTableDataSource for pagination, sorting, and filtering.
     this.dataSource.data = this.formValues.events;
     this.exportTotExcel.exportToExcel([this.formValues], 'form_data');
     this.formSubmittedDisplayData = true;
@@ -90,9 +93,7 @@ export class TimeLinesComponent implements OnInit, AfterViewInit {
   }
 
   formatDate(inputDate: any): string {
-    if (!inputDate) {
-      return '';
-    }
+    if (!inputDate) return '';
     const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
     if (inputDate instanceof Date) {
       const day = inputDate.getDate().toString().padStart(2, '0');
@@ -101,7 +102,7 @@ export class TimeLinesComponent implements OnInit, AfterViewInit {
       return `${day}-${month}-${year}`;
     } else if (typeof inputDate === 'string') {
       const parts = inputDate.split('-');
-      if (parts.length < 3) { return inputDate; }
+      if (parts.length < 3) return inputDate;
       const day = parts[2];
       const month = months[parseInt(parts[1], 10) - 1];
       const year = parts[0];
@@ -111,40 +112,25 @@ export class TimeLinesComponent implements OnInit, AfterViewInit {
   }
 
   isPastOrFuture(inputDate: any): string {
-    if (!inputDate) {
-      return '';
-    }
+    if (!inputDate) return '';
     const currentDate = new Date();
     const providedDate = inputDate instanceof Date ? inputDate : new Date(inputDate);
-    if (providedDate < currentDate) {
-      return "past";
-    } else if (providedDate > currentDate) {
-      return "future";
-    } else {
-      return "present";
-    }
+    if (providedDate < currentDate) return 'past';
+    else if (providedDate > currentDate) return 'future';
+    else return 'present';
   }
   
   calculateDaysDifference(dateValue: any): string {
-    if (!dateValue) {
-      return '';
-    }
+    if (!dateValue) return '';
     const currentDate = new Date();
     const providedDate = dateValue instanceof Date ? dateValue : new Date(dateValue);
     const differenceInMs = providedDate.getTime() - currentDate.getTime();
     const differenceInDays = Math.ceil(differenceInMs / (1000 * 60 * 60 * 24));
-    if (differenceInDays < 0) {
-      return 'past : ' + Math.abs(differenceInDays) + ' days ago';
-    } else if (differenceInDays > 0) {
-      return 'future : ' + differenceInDays + ' days to go';
-    } else {
-      return 'present';
-    }
+    if (differenceInDays < 0) return 'past : ' + Math.abs(differenceInDays) + ' days ago';
+    else if (differenceInDays > 0) return 'future : ' + differenceInDays + ' days to go';
+    else return 'present';
   }
 
-  /**
-   * Applies a filter on the mat table based on the input value and specified column.
-   */
   applyFilter(filterEvent: any, column: string) {
     this.dataSource.filterPredicate = (data: any, filter: string) => {
       return data[column] && data[column].toLowerCase().includes(filter);
