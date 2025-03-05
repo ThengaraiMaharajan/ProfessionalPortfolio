@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { ProfessionalPortfolioRoutingModule } from './professional-portfolio-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

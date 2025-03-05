@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '', 
-    redirectTo: 'profile',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -20,12 +20,12 @@ const routes: Routes = [
     loadChildren : () => import('./modules/resume-builder/resume-builder.module').then(m => m.ResumeBuilderModule)
   },
   {
-    path : 'profile',
+    path : 'home',
     loadChildren : () => import('./modules/professional-portfolio/professional-portfolio.module').then(m => m.ProfessionalPortfolioModule)
   },
   {
     path: '**',  // Wildcard route for any unmatched URL
-    redirectTo: 'profile'  // Redirect to profile
+    redirectTo: 'home'  // Redirect to profile
   }
 ];
 
