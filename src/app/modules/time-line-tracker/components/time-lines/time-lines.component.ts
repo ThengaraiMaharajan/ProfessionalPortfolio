@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 import * as XLSX from 'xlsx';
 import { ExportToExcelService } from '../../services/export-to-excel.service';
 
@@ -9,7 +10,7 @@ import { ExportToExcelService } from '../../services/export-to-excel.service';
   templateUrl: './time-lines.component.html',
   styleUrls: ['./time-lines.component.css']
 })
-export class TimeLinesComponent implements OnInit {
+export class TimeLinesComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['index', 'eventName', 'eventDescription', 'formatedDate', 'pastOrFuture', 'dayCount'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
@@ -20,6 +21,8 @@ export class TimeLinesComponent implements OnInit {
   formSubmittedDisplayData: boolean = false;
   showFileDataDisplay: boolean = false;
 
+  @ViewChild(MatSort) sort!: MatSort;
+
   constructor(private fb: FormBuilder, private exportTotExcel: ExportToExcelService) {}
 
   ngOnInit(): void {
@@ -28,6 +31,11 @@ export class TimeLinesComponent implements OnInit {
       dob: [''],
       events: this.fb.array([])
     });
+  }
+
+  ngAfterViewInit(): void {
+    // Set the sort after the view is initialized.
+    this.dataSource.sort = this.sort;
   }
 
   get events(): FormArray {
@@ -55,7 +63,6 @@ export class TimeLinesComponent implements OnInit {
       userEvent.formatedDate = this.formatDate(userEvent.eventDate);
       userEvent.dayCount = this.calculateDaysDifference(userEvent.eventDate);
     });
-    // Assign events to the MatTableDataSource for filtering
     this.dataSource.data = this.formValues.events;
     this.exportTotExcel.exportToExcel([this.formValues], 'form_data');
     this.formSubmittedDisplayData = true;
@@ -135,9 +142,8 @@ export class TimeLinesComponent implements OnInit {
       return 'present';
     }
   }
-  
+
   applyFilter(filterEvent: any, column: string) {
-    // Configure the filter predicate for the specific column
     this.dataSource.filterPredicate = (data: any, filter: string) => {
       return data[column] && data[column].toLowerCase().includes(filter);
     };

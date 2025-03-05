@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     TimeLinesComponent
@@ -25,7 +26,8 @@ import { MatCardModule } from '@angular/material/card';
     MatNativeDateModule,
     MatButtonModule,
     MatTableModule,
-    MatCardModule
+    MatCardModule,
+    MatSortModule
   ]
 })
 export class TimeLineTrackerModule { }
