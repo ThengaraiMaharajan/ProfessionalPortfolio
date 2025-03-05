@@ -56,15 +56,23 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="mt-2">
-                  <label for="jobDescription">Profile Summary</label>
-                  <textarea formControlName="jobDescription" id="jobDescription" class="form-control" placeholder="Enter Your Profile Summary"></textarea>
+            <section class="container p-3 border mb-3">
+              <form [formGroup]="userDetailsForm">
+                <!-- Other form controls for name, designation, etc. -->
+                <div class="row">
+                  <div class="col-12">
+                    <div class="mt-2">
+                      <label for="jobDescription">Profile Summary</label>
+                      <textarea formControlName="jobDescription" id="jobDescription" class="form-control" placeholder="Enter Your Profile Summary"></textarea>
+                    </div>
+                    <!-- Button to open the AI suggestion dialog -->
+                    <button type="button" class="btn btn-primary mt-2" (click)="openGenerateSummaryDialog()">Generate Summary</button>
+                  </div>
                 </div>
-                <button type="button" class="btn btn-primary mt-2" (click)="generateProfileSummary()">Generate Summary</button>
-              </div>
-            </div>
+                <button type="button" (click)="submitUserDetailsForm()" class="btn btn-primary btn-block mt-2">Submit to view preview</button>
+              </form>
+            </section>
+            
             <button type="button" (click)="submitUserDetailsForm()" class="btn btn-primary btn-block mt-2">Submit to view preview</button>
           </form>
         </section>

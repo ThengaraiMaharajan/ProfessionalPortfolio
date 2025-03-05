@@ -1,0 +1,6 @@
+/* Remove default padding and rounding when used as full screen */
+.full-screen-dialog .mat-dialog-container {
+    padding: 0;
+    border-radius: 0;
+  }
+  

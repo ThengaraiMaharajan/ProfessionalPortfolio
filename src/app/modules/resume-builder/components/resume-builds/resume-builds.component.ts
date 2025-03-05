@@ -3,6 +3,10 @@ import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { AIApiService } from '../../../../services/aiapi.service';
+import { GenerateSummaryDialogComponent } from '../../dialog-components/generate-summary-dialog/generate-summary-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+
+GenerateSummaryDialogComponent
 
 @Component({
   selector: 'app-resume-builds',
@@ -23,7 +27,7 @@ export class ResumeBuildsComponent implements OnInit {
   languageForm!: FormGroup;
   interestForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private ai : AIApiService) {}
+  constructor(private fb: FormBuilder, private ai : AIApiService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     // Initialize user details form
@@ -75,6 +79,20 @@ export class ResumeBuildsComponent implements OnInit {
     // Initialize Interests Form
     this.interestForm = this.fb.group({
       interests: this.fb.array([this.createInterestGroup()])
+    });
+  }
+
+  openGenerateSummaryDialog(): void {
+    const dialogRef = this.dialog.open(GenerateSummaryDialogComponent, {
+      width: '70vw',
+      height: '70vh',
+      maxWidth: '90vw',
+      panelClass: 'full-screen-dialog',
+      data: { userInput: this.userDetailsForm.value.jobDescription || '' }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      // Optionally update the form with the AI suggestion if needed
     });
   }
 

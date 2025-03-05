@@ -1,0 +1,25 @@
+<div class="container-fluid p-3">
+  <h2 class="mb-3">AI Suggestion for Profile Summary</h2>
+  <form [formGroup]="dialogForm">
+    <div class="form-group">
+      <label>Your Input</label>
+      <textarea class="form-control" formControlName="userInput" rows="3" readonly></textarea>
+    </div>
+
+    <div class="form-group mt-3">
+      <button type="button" class="btn btn-primary" (click)="askAISuggestion()" [disabled]="loading">
+        {{ loading ? 'Loading...' : 'Ask AI Suggestion' }}
+      </button>
+    </div>
+
+    <div *ngIf="dialogForm.get('aiResponse')?.value" class="form-group mt-3">
+      <label>AI Response</label>
+      <textarea class="form-control" formControlName="aiResponse" rows="5" readonly></textarea>
+      <!-- <div class="markdown-content" [innerHTML]="aiResponse | markdown"></div> -->
+      <button type="button" class="btn btn-secondary mt-2" (click)="copyResponse()">Copy</button>
+    </div>
+  </form>
+  <div class="text-right mt-3">
+    <button type="button" class="btn btn-light" (click)="closeDialog()">Close</button>
+  </div>
+</div>
