@@ -1,34 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 import * as XLSX from 'xlsx';
 import { ExportToExcelService } from '../../services/export-to-excel.service';
 
 @Component({
   selector: 'app-time-lines',
   templateUrl: './time-lines.component.html',
-  styleUrl: './time-lines.component.css'
+  styleUrls: ['./time-lines.component.css']
 })
-export class TimeLinesComponent {
+export class TimeLinesComponent implements OnInit {
 
   displayedColumns: string[] = ['index', 'eventName', 'eventDescription', 'formatedDate', 'pastOrFuture', 'dayCount'];
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
   timeLineForm!: FormGroup;
-  formValues : any;
-  jsonData : any;
-  canvas: any;
-  ctx: any;
-  formSubmittedDisplayData : boolean = false;
-  showFileDataDisplay : boolean = false;
+  formValues: any;
+  jsonData: any;
+  formSubmittedDisplayData: boolean = false;
+  showFileDataDisplay: boolean = false;
 
-  constructor(private fb : FormBuilder, private exportTotExcel : ExportToExcelService){}
+  constructor(private fb: FormBuilder, private exportTotExcel: ExportToExcelService) {}
+
   ngOnInit(): void {
-
     this.timeLineForm = this.fb.group({
       name: [''],
       dob: [''],
       events: this.fb.array([])
     });
-
   }
 
   get events(): FormArray {
@@ -40,7 +39,7 @@ export class TimeLinesComponent {
       eventName: [''],
       eventDescription: [''],
       eventDate: [''],
-      isPast:['']
+      isPast: ['']
     });
     this.events.push(eventGroup);
   }
@@ -51,11 +50,13 @@ export class TimeLinesComponent {
 
   onSubmit() {
     this.formValues = this.timeLineForm.value;
-    this.formValues.events.forEach((userEvent : any) => {
+    this.formValues.events.forEach((userEvent: any) => {
       userEvent.pastOrFuture = this.isPastOrFuture(userEvent.eventDate);
       userEvent.formatedDate = this.formatDate(userEvent.eventDate);
       userEvent.dayCount = this.calculateDaysDifference(userEvent.eventDate);
     });
+    // Assign events to the MatTableDataSource for filtering
+    this.dataSource.data = this.formValues.events;
     this.exportTotExcel.exportToExcel([this.formValues], 'form_data');
     this.formSubmittedDisplayData = true;
   }
@@ -135,41 +136,12 @@ export class TimeLinesComponent {
     }
   }
   
-  calculateRelativeDate(durationString : any) {
-    const durationParts = durationString.split(" ");
-    let currentDate = new Date();
-  
-    let years = 0;
-    let months = 0;
-    let days = 0;
-  
-    for (let i = 0; i < durationParts.length; i += 2) {
-      const value = parseInt(durationParts[i]);
-      const unit = durationParts[i + 1].toLowerCase();
-  
-      if (unit === "year" || unit === "years") {
-        years += value;
-      } else if (unit === "month" || unit === "months") {
-        months += value;
-      } else if (unit === "day" || unit === "days") {
-        days += value;
-      }
-    }
-  
-    // Adjust the current date
-    currentDate.setFullYear(currentDate.getFullYear() - years);
-    currentDate.setMonth(currentDate.getMonth() - months);
-    currentDate.setDate(currentDate.getDate() - days);
-  
-    return currentDate;
-  }
-
-  applyFilter(filterValue: any, column: string) {
-    this.formValues.events.filterPredicate = (data: any, filter: string) => {
-      return data[column]?.toLowerCase().includes(filter.trim().toLowerCase());
+  applyFilter(filterEvent: any, column: string) {
+    // Configure the filter predicate for the specific column
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      return data[column] && data[column].toLowerCase().includes(filter);
     };
-    this.formValues.events.filter = filterValue.value.trim().toLowerCase();
+    const filterValue = filterEvent.value.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
   }
-  
-
 }
