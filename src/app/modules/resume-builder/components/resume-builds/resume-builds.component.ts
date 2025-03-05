@@ -81,8 +81,6 @@ export class ResumeBuildsComponent {
       interests: this.fb.array([this.createInterestGroup()])
     });
 
-    this.chatWithClaude();
-
   }
 
   get experiences(): FormArray {
@@ -350,15 +348,5 @@ export class ResumeBuildsComponent {
     });
   }
 
-
-  async chatWithClaude() {
-    try {
-      console.log('Chatting with Claude...');
-      const response = await this.ai.sendMessage('Hello, Claude!');
-      console.log(response);
-    } catch (error) {
-      // Handle error
-    }
-  }
 
 }

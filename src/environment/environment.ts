@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    claudeApiKey :  ''
+    geminiKey : 'AIzaSyBUJk_QsMXFZMGAwELiiv5QbIDt54CsOHs'
 };

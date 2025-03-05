@@ -1,36 +1,25 @@
-import { Injectable } from '@angular/core';
-import Anthropic from '@anthropic-ai/sdk';
-import { environment } from '../../environment/environment';
+  import { Injectable } from '@angular/core';
+  import Anthropic from '@anthropic-ai/sdk';
+  import { environment } from '../../environment/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AIApiService {
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AIApiService {
 
-  private anthropic!: Anthropic;
+    private apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${environment.geminiKey}`;
 
-  constructor() { 
+    constructor(private http: HttpClient) { }
 
-    this.anthropic = new Anthropic({
-      apiKey: environment.claudeApiKey,
-      dangerouslyAllowBrowser: true
-    });
-
-  }
-
-  async sendMessage(message: string) {
-    try {
-      const response : any = await this.anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: message }]
-      });
-
-      return response.messages[0].content;
-    } catch (error) {
-      console.error('Claude API Error:', error);
-      throw error;
+    generateContent(prompt: string): Observable<any> {
+      const payload = {
+        contents: [{
+          parts: [{ text: prompt }]
+        }]
+      };
+      return this.http.post<any>(this.apiUrl, payload);
     }
-  }
 
-}
+  }
