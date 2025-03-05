@@ -126,15 +126,21 @@
   <div class="border p-1 m-1">
     <input type="file" (change)="onFileChange($event)">
     <button class="btn btn-primary btn-sm" (click)="uploadFile()">Upload</button>
-</div>
+  </div>
+  
   <div *ngIf="showFileDataDisplay" class="row">
-    <div class="col-8 d-flex justify-content-center align-items-center border p-1 m-1">
+    <!-- View Toggle Buttons -->
+    <div class="col-12 text-center mb-3">
+      <button class="btn btn-outline-primary" (click)="selectedFileView='card'">Card View</button>
+      <button class="btn btn-outline-primary" (click)="selectedFileView='table'">Table View</button>
+    </div>
+    
+    <!-- Card View -->
+    <div *ngIf="selectedFileView === 'card'" class="col-8 d-flex justify-content-center align-items-center border p-1 m-1">
       <ul class="file-data-list">
         <li *ngFor="let event of jsonData">
           <dl>
-            <dt>
-              <p>Event: {{ event.eventName }}</p>
-            </dt>
+            <dt><p>Event: {{ event.eventName }}</p></dt>
             <dd>
               <p><strong>Date</strong>: {{ event.eventDate }}</p>
               <p><strong>Description</strong>: {{ event.eventDescription }}</p>
@@ -145,5 +151,65 @@
         </li>
       </ul>
     </div>
+    
+    <!-- Table View -->
+    <div *ngIf="selectedFileView === 'table'" class="col-12">
+      <mat-card>
+        <mat-card-title>Uploaded File Data</mat-card-title>
+        <div *ngIf="fileDataSource.data && fileDataSource.data.length > 0">
+          <!-- Optional filter input -->
+          <div class="mb-2">
+            <input matInput (keydown)="$event.stopPropagation()"
+                   (keyup)="applyFilter($event.target, 'eventName')" placeholder="Filter by Event Name">
+          </div>
+          <table mat-table [dataSource]="fileDataSource" matSort #fileSort="matSort" class="mat-elevation-z8">
+            <!-- Index Column -->
+            <ng-container matColumnDef="index">
+              <th mat-header-cell *matHeaderCellDef>#</th>
+              <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+            </ng-container>
+            
+            <!-- Event Name Column -->
+            <ng-container matColumnDef="eventName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Event Name</th>
+              <td mat-cell *matCellDef="let element">{{ element.eventName }}</td>
+            </ng-container>
+            
+            <!-- Event Description Column -->
+            <ng-container matColumnDef="eventDescription">
+              <th mat-header-cell *matHeaderCellDef>Description</th>
+              <td mat-cell *matCellDef="let element">{{ element.eventDescription }}</td>
+            </ng-container>
+            
+            <!-- Date Column -->
+            <ng-container matColumnDef="eventDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+              <td mat-cell *matCellDef="let element">{{ element.eventDate }}</td>
+            </ng-container>
+            
+            <!-- Past Or Present Column -->
+            <ng-container matColumnDef="pastOrPresent">
+              <th mat-header-cell *matHeaderCellDef>Past Or Present</th>
+              <td mat-cell *matCellDef="let element">{{ element.pastOrPresent }}</td>
+            </ng-container>
+            
+            <!-- Day Count Column -->
+            <ng-container matColumnDef="dayCount">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Day Count</th>
+              <td mat-cell *matCellDef="let element">{{ element.dayCount }}</td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="fileDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: fileDisplayedColumns"></tr>
+          </table>
+          <mat-paginator #filePaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+        </div>
+        <p *ngIf="!fileDataSource.data || fileDataSource.data.length === 0" class="text-center">
+          No data available.
+        </p>
+      </mat-card>
+    </div>
   </div>
 </div>
+
+

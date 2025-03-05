@@ -13,8 +13,16 @@ import { ExportToExcelService } from '../../services/export-to-excel.service';
 })
 export class TimeLinesComponent implements OnInit {
 
+  // Timeline table properties (using processed data)
   displayedColumns: string[] = ['index', 'eventName', 'eventDescription', 'formatedDate', 'pastOrFuture', 'dayCount'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
+
+  // File upload table properties (using raw file data)
+  fileDisplayedColumns: string[] = ['index', 'eventName', 'eventDescription', 'eventDate', 'pastOrPresent', 'dayCount'];
+  fileDataSource: MatTableDataSource<any> = new MatTableDataSource();
+  
+  // Toggle view: 'card' (default) or 'table'
+  selectedFileView: string = 'card';
 
   timeLineForm!: FormGroup;
   formValues: any;
@@ -22,15 +30,16 @@ export class TimeLinesComponent implements OnInit {
   formSubmittedDisplayData: boolean = false;
   showFileDataDisplay: boolean = false;
 
-  @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
-    if (paginator) {
-      this.dataSource.paginator = paginator;
+  // Set the sort/paginator for the file table via template reference variables
+  @ViewChild('fileSort') set fileSort(sort: MatSort) {
+    if (sort) {
+      this.fileDataSource.sort = sort;
     }
   }
 
-  @ViewChild(MatSort) set sort(sort: MatSort) {
-    if (sort) {
-      this.dataSource.sort = sort;
+  @ViewChild('filePaginator') set filePaginator(paginator: MatPaginator) {
+    if (paginator) {
+      this.fileDataSource.paginator = paginator;
     }
   }
 
@@ -83,6 +92,7 @@ export class TimeLinesComponent implements OnInit {
       const sheetName = workbook.SheetNames[0];
       const sheet = workbook.Sheets[sheetName];
       this.jsonData = XLSX.utils.sheet_to_json(sheet);
+      this.fileDataSource.data = this.jsonData;
     };
     reader.readAsArrayBuffer(file);
     this.showFileDataDisplay = true;
@@ -132,10 +142,10 @@ export class TimeLinesComponent implements OnInit {
   }
 
   applyFilter(filterEvent: any, column: string) {
-    this.dataSource.filterPredicate = (data: any, filter: string) => {
+    this.fileDataSource.filterPredicate = (data: any, filter: string) => {
       return data[column] && data[column].toLowerCase().includes(filter);
     };
     const filterValue = filterEvent.value.trim().toLowerCase();
-    this.dataSource.filter = filterValue;
+    this.fileDataSource.filter = filterValue;
   }
 }
