@@ -20,6 +20,10 @@ const routes: Routes = [
     loadChildren : () => import('./modules/resume-builder/resume-builder.module').then(m => m.ResumeBuilderModule)
   },
   {
+    path : 'chatbot',
+    loadChildren : () => import('./modules/chatbot/chatbot.module').then(m => m.ChatbotModule)
+  },
+  {
     path : 'home',
     loadChildren : () => import('./modules/professional-portfolio/professional-portfolio.module').then(m => m.ProfessionalPortfolioModule)
   },
