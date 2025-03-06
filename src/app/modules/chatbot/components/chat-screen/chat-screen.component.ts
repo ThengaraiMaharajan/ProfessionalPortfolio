@@ -16,19 +16,6 @@ export class ChatScreenComponent {
   messages: ChatMessage[] = [];
   userInput: string = '';
 
-  markdownContent: string = `
-  # Hello from ngx‑remark
-  
-  This is a **Markdown** message that supports:
-  
-  - Lists
-  - **Bold** text
-  - _Italic_ text
-  - [Angular](https://angular.io)
-  
-  Enjoy rendering Markdown directly in Angular!
-    `;
-
   constructor(private ai: AIApiService) {}
 
   ngOnInit(): void {
