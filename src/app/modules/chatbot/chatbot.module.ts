@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ChatbotRoutingModule } from './chatbot-routing.module';
 import { ChatScreenComponent } from './components/chat-screen/chat-screen.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RemarkModule } from 'ngx-remark';
 
 
 @NgModule({
@@ -11,7 +13,10 @@ import { ChatScreenComponent } from './components/chat-screen/chat-screen.compon
   ],
   imports: [
     CommonModule,
-    ChatbotRoutingModule
+    ChatbotRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RemarkModule
   ]
 })
 export class ChatbotModule { }
