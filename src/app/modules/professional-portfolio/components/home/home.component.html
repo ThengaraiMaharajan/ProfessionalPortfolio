@@ -1,99 +1,186 @@
+<!-- src/app/portfolio/portfolio.component.html -->
 <div>
-    <div class="container-fluid">
-
-        <div class="card">
-            <div class="card-body">
-                <h3 class="card-title text-center">Thengarai Maharajan Subbiah</h3>
-                <p class="card-text text-center">{{'tmaharajan1999@gmail.com'}} | +91 9585402236 | <a href="https://www.linkedin.com/in/thengarai-maharajan/" target="_blank">Linked In</a> | <a href="https://github.com/ThengaraiMaharajan" target="_blank">GitHub</a></p>
-                <p class="card-text text-center">Proficient Programmer Analyst with 2+ years of experience in developing scalable, responsive web applications using Angular, Material, and Bootstrap. Skilled in integrating dynamic data via RESTful APIs and experienced in Agile methodologies. Strong technical acumen in both front-end and back-end technologies, including Node.js and MongoDB, ensuring robust application performance and seamless user experiences.</p>
-            </div>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" routerLink="/">Thengarai Maharajan</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+         <ul class="navbar-nav ml-auto">
+           <li class="nav-item">
+             <a class="nav-link" href="#profile">Profile</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="#experience">Experience</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="#projects">Projects</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="#education">Education</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="#certifications">Certifications</a>
+           </li>
+         </ul>
+      </div>
+    </nav>
+  
+    <!-- Header Section -->
+    <header class="container text-center my-5">
+      <!-- Update the src attribute with the path to your profile image in assets folder -->
+      <img src="assets/profile-image.jpg" alt="Profile Picture" class="profile-img mb-3">
+      <h1>Thengarai Maharajan Subbiah</h1>
+      <p>
+        <a href="mailto:tmaharajan1999@gmail.com">{{'tmaharajan1999@gmail.com'}}</a> |
+        <a href="tel:+919585402236">+91 9585402236</a> |
+        <a href="https://www.linkedin.com/in/thengarai-maharajan/" target="_blank">LinkedIn</a> |
+        <a href="https://github.com/ThengaraiMaharajan" target="_blank">GitHub</a>
+      </p>
+      <p class="lead">
+        Passionate Front-End Developer with 2.5 years of experience in designing scalable web applications using Angular, JavaScript, and TypeScript.
+      </p>
+    </header>
+  
+    <!-- Profile Summary -->
+    <section id="profile" class="container">
+      <h2 class="section-title">Profile Summary</h2>
+      <div class="card mb-4">
+        <div class="card-body">
+          <p>
+            Passionate Front-End Developer with 2.5 years of experience in designing and developing scalable web applications. Skilled in creating responsive user interfaces with Angular, Bootstrap, and Angular Material, as well as integrating RESTful APIs. Known for a collaborative approach in agile environments and a commitment to delivering high-quality, user-centric solutions.
+          </p>
         </div>
-
-        <div class="row m-0 p-0">
-            <div class="col-md-6 m-0 p-0">
-    
-                <div class="card">
-                    <div class="card-body">
-                        <h4>Experience</h4>
-                        <p>
-                            <strong>Programmer Analyst</strong>
-                        </p>
-                        <p>
-                            <a href="https://www.changingconstants.io/" target="_blank" ><strong>Changing Constants</strong></a>
-                        </p>
-                        <p>AUG 2022 - Present</p>
-                        <ul>
-                            <li>
-                                Designed and implemented dynamic, responsive web pages using Angular, Material, and Bootstrap, ensuring cross-browser compatibility.
-                            </li>
-                            <li>
-                                Collaborated with backend teams to integrate REST APIs, dynamically binding data for interactive user interfaces.
-                            </li>
-                            <li>
-                                Managed deployments to UAT and Production environments through Azure DevOps pipelines, streamlining release processes.
-                            </li>
-                            <li>
-                                Improved user experience by gathering and incorporating feedback from Quality Analysts and end-users.
-                            </li>
-                        </ul>
-                        <p>
-                            <strong>Intern</strong>
-                        </p>
-                        <p>
-                        <a href="https://www.swiftant.com/" target="_blank" ><strong>SwiftAnt IT Solutions</strong></a></p>
-                        <p>APR 2022 - AUG 2022</p>
-                        <p>Developed responsive web applications using Angular and Bootstrap, ensuring high performance and usability.</p>
-                    </div>
-                </div>
-                 
-                <div class="card">
-                    <div class="card-body">
-                        <h4>Education</h4>
-                        <p>
-                            <strong>Bachelor of Engineering, Computer Science Engineering</strong>
-                        </p>
-                        <p>2017 - 2021</p>
-                        <p><a target="_blank" href="https://jerusalemengg.ac.in/">Jerusalem College of Engineering (Anna University), Chennai</a></p>
-                        <p>
-                            <strong>HSE</strong>
-                        </p>
-                        <p>2016 - 2017</p>
-                        <p>Seventh Day Adventist Matriculation Higher Secondary School, Hosur</p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-6 m-0 p-0">
-                <div class="card">
-                    <div class="card-body">
-                        <h4>Skills</h4>
-                        <p><strong>Languages</strong> : JavaScript, TypeScript, Python</p>
-                        <p><strong>Front-End</strong> : HTML5, CSS3, SCSS, Angular, Angular Material, Bootstrap</p>
-                        <p><strong>Back-End</strong> : Node.js</p>
-                        <p><strong>Databases</strong> : MongoDB, SQL</p>
-                        <p><strong>Tools</strong> : Azure DevOps, Git, Postman, Sourcetree, Jira</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h4>Projects</h4>
-                        <h5>GitHub | CodePen</h5>
-                        <p><a [routerLink]="['/resume-builder']" target="_blank"><strong>Resume Builder</strong></a> : Angular, Bootstrap, jsPDF - A dynamic web application for generating PDF resumes based on user input.</p>
-                        <p><a [routerLink]="['/time-lines-tracker']" target="_blank"><strong>Timeline Tracker</strong></a>: Angular, ExcelJS - Tracks past/future events and generates an Excel file for easy visualization.</p>
-                        <p><a [routerLink]="['/dynamic-forms']" target="_blank"><strong>Dynamic Forms Generator</strong></a>: Angular - Utilizes reactive forms to create dynamic form fields from user-provided data.</p>
-                        <p><a href="https://thengaraimaharajandev.github.io/Image-Edge-Detection/" target="_blank"><strong>Image Detection and Manual Cropper</strong></a> : OpenCV, HTML/CSS - Detects and crops documents using edge detection algorithms.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h4>Certifications</h4>
-                        <p><a target="_blank" href="https://www.freecodecamp.org/certification/Thengarai_Maharajan/responsive-web-design">Responsive Web Design Certification - FreeCodeCamp(2024)</a></p>
-                        <p><a target="_blank" href="https://www.freecodecamp.org/certification/Thengarai_Maharajan/javascript-algorithms-and-data-structures-v8">JavaScript Algorithms and Data Structures Certification - FreeCodeCamp (2024)</a></p>
-                        <p>Business English Certificate Preliminary - Cambridge English (2018)</p>
-                    </div>
-                </div>
-            </div>
+      </div>
+    </section>
+  
+    <!-- Experience Section -->
+    <section id="experience" class="container">
+      <h2 class="section-title">Experience</h2>
+      <!-- Experience Card 1 -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="card-title">Programmer Analyst - Front-End Web Developer</h4>
+          <h6 class="card-subtitle mb-2 text-muted">
+            Changing Constants <small>(AUG 2022 - Present)</small>
+          </h6>
+          <p class="card-text">
+            <strong>DMVIC:</strong> Digitally Managed and Verifiable Insurance Certificate System – a nationwide solution for insurance issuance, tracking, and verification in Kenya and Malawi.
+          </p>
+          <ul>
+            <li>Designed and implemented 7+ dynamic, responsive web applications using Angular, Material, and Bootstrap.</li>
+            <li>Integrated REST APIs to dynamically bind data and deliver interactive user experiences.</li>
+            <li>Optimized API calls to enhance efficiency and reduce data retrieval time.</li>
+            <li>Managed frontend deployments via Azure DevOps pipelines for UAT and production environments.</li>
+            <li>Improved usability by incorporating feedback from quality analysts and end-users.</li>
+          </ul>
         </div>
-
-    </div>
-</div>
+      </div>
+      <!-- Experience Card 2 -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="card-title">Intern - Front-End Web Developer</h4>
+          <h6 class="card-subtitle mb-2 text-muted">
+            SwiftAnt IT Solutions <small>(APR 2022 - AUG 2022)</small>
+          </h6>
+          <p class="card-text">
+            Developed responsive and high-performance web applications using Angular and Bootstrap, building reusable components and modular architectures for scalable solutions.
+          </p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Projects Section -->
+    <section id="projects" class="container">
+      <h2 class="section-title">Projects</h2>
+      <!-- Resume Builder -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="card-title">Resume Builder</h4>
+          <p class="card-text">
+            A dynamic web application built with Angular, Bootstrap, and jsPDF that generates professional PDF resumes based on user input.
+          </p>
+          <p><a [routerLink]="['/resume-builder']" target="_blank">View Project</a></p>
+        </div>
+      </div>
+      <!-- Dynamic Forms Generator -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="card-title">Dynamic Forms Generator</h4>
+          <p class="card-text">
+            Utilizes Angular reactive forms to create dynamic form fields from user-provided data.
+          </p>
+          <p><a [routerLink]="['/time-lines-tracker']" target="_blank">View Project</a></p>
+        </div>
+      </div>
+      <!-- Timeline Tracker -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="card-title">Timeline Tracker</h4>
+          <p class="card-text">
+            Developed using Angular and ExcelJS to track past and future events, generating Excel reports for easy visualization.
+          </p>
+          <p><a [routerLink]="['/dynamic-forms']" target="_blank">View Project</a></p>
+        </div>
+      </div>
+      <!-- Image Detection & Manual Cropper -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="card-title">Image Detection & Manual Cropper</h4>
+          <p class="card-text">
+            A document scanning tool that uses OpenCV and edge detection algorithms to detect and crop documents.
+          </p>
+          <p>
+            <a href="https://thengaraimaharajandev.github.io/Image-Edge-Detection/" target="_blank">
+              View Project
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Education Section -->
+    <section id="education" class="container">
+      <h2 class="section-title">Education</h2>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4>Bachelor of Engineering - Computer Science Engineering</h4>
+          <p>Jerusalem College of Engineering (Anna University), Chennai | 2017 - 2021</p>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4>Higher Secondary Education</h4>
+          <p>Seventh Day Adventist Matriculation Higher Secondary School, Hosur | 2016 - 2017</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Certifications Section -->
+    <section id="certifications" class="container">
+      <h2 class="section-title">Certifications</h2>
+      <div class="card mb-4">
+        <div class="card-body">
+          <p>
+            <a href="https://www.freecodecamp.org/certification/Thengarai_Maharajan/responsive-web-design" target="_blank">
+              Responsive Web Design Certification – FreeCodeCamp (2024)
+            </a>
+          </p>
+          <p>
+            <a href="https://www.freecodecamp.org/certification/Thengarai_Maharajan/javascript-algorithms-and-data-structures-v8" target="_blank">
+              JavaScript Algorithms and Data Structures – FreeCodeCamp (2024)
+            </a>
+          </p>
+          <p>Business English Certificate Preliminary – Cambridge English (2018)</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 Thengarai Maharajan Subbiah. All Rights Reserved.</p>
+    </footer>
+  </div>
+  

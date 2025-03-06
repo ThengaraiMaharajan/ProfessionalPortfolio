@@ -5,3 +5,32 @@
 h4{
     text-decoration: underline;
 }
+
+/* src/app/portfolio/portfolio.component.css */
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: auto;
+    display: block;
+  }
+  
+  .section-title {
+    margin: 2rem 0 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 1rem;
+    background: #343a40;
+    color: #fff;
+    margin-top: 2rem;
+  }
+  
+  /* Additional global styles can be added in styles.css if needed */
+  
