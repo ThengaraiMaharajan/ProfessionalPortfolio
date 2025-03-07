@@ -47,3 +47,24 @@
     margin-left: 10px;
   }
   
+
+::ng-deep pre {
+    display: block !important;
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+    overflow: auto !important;
+    font-size: .875em !important;
+    background-color: black !important;
+    padding: 10px !important;
+    border-radius: 6px !important;
+}
+
+::ng-deep pre code {
+  font-size: inherit !important;
+  color: inherit !important;
+  word-break: normal !important;
+  background-color: black !important;
+  font-family: monospace !important;
+  color: white !important;
+  /* padding: 10px; */
+}
