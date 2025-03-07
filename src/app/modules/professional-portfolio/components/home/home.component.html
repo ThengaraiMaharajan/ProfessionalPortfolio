@@ -1,0 +1,11 @@
+<div class="text-container">
+    <h1>
+      <span class="prefix">I'm</span>
+      <div class="message">
+        <div *ngFor="let word of textSequence; let i = index" [class.active]="i === currentIndex">
+          {{ word }}
+        </div>
+      </div>
+    </h1>
+  </div>
+  
