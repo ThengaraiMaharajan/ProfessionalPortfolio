@@ -10,10 +10,12 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { RemarkModule } from 'ngx-remark';
+import { MatrixRainComponent } from './sharedComponents/matrix-rain/matrix-rain.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MatrixRainComponent
   ],
   imports: [
     BrowserModule,

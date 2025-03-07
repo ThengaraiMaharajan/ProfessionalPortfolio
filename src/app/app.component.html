@@ -1,32 +1,4 @@
-<div class="full-size-border vh-100 vw-100 position-relative overflow-hidden">
-    <!-- Background design -->
-    <div class="bottom-layer">
-
-      
-
-    </div>
-
-    <!-- Top Layer (Content) -->
-    <div class="top-layer overflow-auto">
-      <div class="vh-100 vw-100 position-relative" >
-        <button class="toggle-button" (click)="toggleSidebar()">
-          <div class="m-1 border toggle-lines" ></div>
-          <div class="m-1 border toggle-lines" ></div>
-          <div class="m-1 border toggle-lines" ></div>
-        </button>
-        <div class="top-menu-bar glass-card" >
-
-
-
-        </div>
-        <div class="side-menu-bar glass-card" [class.visible]="isSidebarVisible"></div>
-        <div>
-          <div class="pt-5" >
-            <main>
-              <router-outlet />
-            </main>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
+<main>
+  <router-outlet />
+</main>
+<app-matrix-rain></app-matrix-rain>

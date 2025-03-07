@@ -11,6 +11,34 @@ export class HomeComponent implements OnInit {
 
   experience : any = {};
 
+  projects = [
+    {
+      name: 'AI Chat Bot',
+      description: 'An interactive AI Chat Bot powered by Google Gemini API, built with Angular.',
+      link: '/chatbot'
+    },
+    {
+      name: 'Resume Builder',
+      description: 'A dynamic web application using Angular, Bootstrap, and jsPDF to generate PDF resumes.',
+      link: '/resume-builder'
+    },
+    {
+      name: 'Dynamic Forms Generator',
+      description: 'Utilizes Angular reactive forms to create dynamic form fields from user input.',
+      link: '/dynamic-forms'
+    },
+    {
+      name: 'Timeline Tracker',
+      description: 'Developed using Angular & ExcelJS to track events and generate Excel reports.',
+      link: '/time-lines-tracker'
+    },
+    {
+      name: 'Image Detection & Manual Cropper',
+      description: 'A document scanning tool using OpenCV and edge detection algorithms.',
+      link: 'https://thengaraimaharajandev.github.io/Image-Edge-Detection/'
+    }
+  ];
+
   constructor(
     private datePipe: DatePipe
   ){}
