@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
     "I'm a Web Developer."
   ];
 
-  characters = "01</>";
+  characters = "01</>(){}!=&#";
   finalText: { letter: string; isScrambled: boolean }[][] = [];
   animationComplete = false;
   frame = 0;
@@ -26,7 +26,9 @@ export class HomeComponent implements OnInit {
   ){}
 
   ngOnInit() {
+  setTimeout(() => {
     this.startScrambleAnimation();
+  }, 4000);
   }
 
   async startScrambleAnimation() {

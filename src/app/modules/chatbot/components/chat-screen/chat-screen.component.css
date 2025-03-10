@@ -16,6 +16,7 @@
   
   .chat-message {
     margin: 10px 0;
+    color: black;
   }
   
   .user-message {
@@ -30,6 +31,7 @@
     background: #f1f8e9;
     padding: 8px;
     border-radius: 8px;
+    color: black;
   }
   
   .chat-input {
