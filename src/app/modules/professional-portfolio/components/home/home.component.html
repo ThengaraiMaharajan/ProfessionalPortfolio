@@ -1,11 +1,10 @@
-<div class="text-container">
-    <h1>
-      <span class="prefix">I'm</span>
-      <div class="message">
-        <div *ngFor="let word of textSequence; let i = index" [class.active]="i === currentIndex">
-          {{ word }}
+
+<div class="animated-text-container">
+    <div class="glass-content">
+        <div class="animated-text">
+            <span *ngFor="let char of scrambledText" [class.dud]="char.isScrambled">
+            {{ char.letter }}
+            </span>
         </div>
-      </div>
-    </h1>
-  </div>
-  
+    </div>
+</div>

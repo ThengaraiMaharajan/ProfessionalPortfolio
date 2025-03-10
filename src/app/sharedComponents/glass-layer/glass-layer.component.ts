@@ -12,7 +12,7 @@ export class GlassLayerComponent {
   constructor() {
     setTimeout(() => {
       this.showGlassLayer = true;
-    }, 4000); // Delay of 4 seconds before showing the glass layer
+    }, 4000);
   }
 
 }

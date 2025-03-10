@@ -1,0 +1,12 @@
+::ng-deep p{
+    margin: 0;
+    padding: 0;
+}
+::ng-deep .glass-content {
+    width: 100%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.95);
+    text-align: center;
+    color: #fff;
+    border-radius: 10px;
+}
