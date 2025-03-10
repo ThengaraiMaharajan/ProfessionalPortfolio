@@ -96,4 +96,19 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['home/profile']);
   }
 
+  downloadResume(){
+    const resumeUrl = '../../../../../assets/Resumes/ThengaraiMaharajan-FrontEnd-Angular-2.5years.pdf'; // Path to resume file
+
+    // Open PDF in a new tab
+    window.open(resumeUrl, '_blank');
+
+    // Trigger the download programmatically
+    const link = document.createElement('a');
+    link.href = resumeUrl;
+    link.download = 'ThengaraiMaharajan-Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
 }
