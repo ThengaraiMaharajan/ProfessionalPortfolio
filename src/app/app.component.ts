@@ -17,7 +17,10 @@ export class AppComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-
+    console.log("Seriously ?");
+    console.log("you're INSPECTING!!!");
+    console.log("What are you Inspecting?");
+    console.log("Don't Dig Deeper");
   }
 
   toggleSidebar() {
