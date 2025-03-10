@@ -1,5 +1,5 @@
 <div class="animated-text-container">
-  <div class="glass-content">
+  <div class="glass-content text-center">
     <div class="animated-text">
       <div *ngFor="let line of finalText">
         <p class="p-as-span" *ngFor="let char of line" [class.dud]="char.isScrambled">
@@ -13,7 +13,7 @@
 <br>
 
 <div class="animated-text-container" *ngIf="animationComplete">
-  <div class="glass-content">
+  <div class="glass-content text-center">
     <p>I Design, Develop, Maintain, Build and Deploy Enterprise Level Web Applications</p>
     <button class="btn btn-primary" (click)="routeToProfile()" >
       EXPLORE

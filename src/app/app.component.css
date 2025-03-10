@@ -6,7 +6,9 @@
     width: 100%;
     padding: 10px;
     background: rgba(0, 0, 0, 0.95);
-    text-align: center;
     color: #fff;
     border-radius: 10px;
+}
+::ng-deep .scroll-overflow-y{
+    overflow-y: auto;
 }
