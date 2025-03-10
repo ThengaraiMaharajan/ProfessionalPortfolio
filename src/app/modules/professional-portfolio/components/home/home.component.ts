@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
     "I'm a Web Developer."
   ];
 
-  characters = "0101110010";
+  characters = "01";
   finalText: { letter: string; isScrambled: boolean }[][] = [];
   animationComplete = false;
   frame = 0;
@@ -44,8 +44,8 @@ export class HomeComponent implements OnInit {
 
       for (let i = 0; i < maxLength; i++) {
         const to = newText[i] || "";
-        const start = Math.floor(Math.random() * 60);
-        const end = start + Math.floor(Math.random() * 60);
+        const start = Math.floor(Math.random() * 40);
+        const end = start + Math.floor(Math.random() * 40);
         textQueue.push({ from: '', to, start, end });
       }
 
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
       this.finalText.push(outputText);
       this.frame = 0;
 
-      this.animationInterval = setInterval(() => this.updateText(resolve), 70); // Slower update speed
+      this.animationInterval = setInterval(() => this.updateText(resolve), 50); // Slower update speed
     });
   }
 
