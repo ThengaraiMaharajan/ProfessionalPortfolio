@@ -12,3 +12,9 @@
 ::ng-deep .scroll-overflow-y{
     overflow-y: auto;
 }
+
+::ng-deep .content-container {
+    position: relative;
+    z-index: 21;
+    overflow-y: auto;
+  }
