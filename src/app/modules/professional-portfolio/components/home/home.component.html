@@ -1,23 +1,23 @@
 <div class="animated-text-container">
-    <div class="glass-content">
-      <div class="animated-text">
-        <div *ngFor="let line of finalText">
-          <span *ngFor="let char of line" [class.dud]="char.isScrambled">
-            {{ char.letter }}
-          </span>
-        </div>
+  <div class="glass-content">
+    <div class="animated-text">
+      <div *ngFor="let line of finalText">
+        <p class="p-as-span" *ngFor="let char of line" [class.dud]="char.isScrambled">
+          {{ char.letter }}
+        </p>
       </div>
     </div>
   </div>
-  
-  <br>
-  
-  <!-- Show button only when animationComplete is true -->
-  <div class="animated-text-container" *ngIf="animationComplete">
-    <div class="glass-content">
-      <button class="btn btn-primary" (click)="routeToProfile()" >
-        EXPLORE
-      </button>
-    </div>
+</div>
+
+<br>
+
+<div class="animated-text-container" *ngIf="animationComplete">
+  <div class="glass-content">
+    <p>I Design, Develop, Maintain, Build and Deploy Enterprise Level Web Applications</p>
+    <br>
+    <button class="btn btn-primary" (click)="routeToProfile()" >
+      EXPLORE
+    </button>
   </div>
-  
+</div>

@@ -11,11 +11,10 @@ export class HomeComponent implements OnInit {
   phrases: string[] = [
     "I'm THENGARAI MAHARAJAN",
     "I'm a Computer Science Engineer,",
-    "I'm a Web Developer,",
-    "I Design, Develop, Maintain, Build and Deploy Enterprise Level Web Applications"
+    "I'm a Web Developer."
   ];
 
-  characters = "01";
+  characters = "0101110010";
   finalText: { letter: string; isScrambled: boolean }[][] = [];
   animationComplete = false;
   frame = 0;
@@ -34,7 +33,7 @@ export class HomeComponent implements OnInit {
     for (const phrase of this.phrases) {
       await this.setScrambledText(phrase);
     }
-    this.animationComplete = true; // Button appears only after all phrases are done
+    this.animationComplete = true;
   }
 
   setScrambledText(newText: string): Promise<void> {
@@ -45,8 +44,8 @@ export class HomeComponent implements OnInit {
 
       for (let i = 0; i < maxLength; i++) {
         const to = newText[i] || "";
-        const start = Math.floor(Math.random() * 40);
-        const end = start + Math.floor(Math.random() * 40);
+        const start = Math.floor(Math.random() * 60);
+        const end = start + Math.floor(Math.random() * 60);
         textQueue.push({ from: '', to, start, end });
       }
 
@@ -54,7 +53,7 @@ export class HomeComponent implements OnInit {
       this.finalText.push(outputText);
       this.frame = 0;
 
-      this.animationInterval = setInterval(() => this.updateText(resolve), 60); // Slower update speed
+      this.animationInterval = setInterval(() => this.updateText(resolve), 70); // Slower update speed
     });
   }
 

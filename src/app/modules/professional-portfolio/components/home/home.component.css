@@ -7,11 +7,14 @@
 }
 
 .animated-text {
-  color: lightblue;
-  font-size: 2rem;
   text-align: center;
 }
 
 .dud {
   color: grey;
+}
+
+
+.p-as-span{
+  display: inline;
 }
