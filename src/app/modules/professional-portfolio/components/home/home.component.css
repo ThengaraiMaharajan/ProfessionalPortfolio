@@ -1,11 +1,17 @@
 .animated-text-container {
-  height: 100vh;
+  /* height: 100vh; */
   width: 100vw;
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
 }
 
 .animated-text {
   color: lightblue;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.dud {
+  color: grey;
 }

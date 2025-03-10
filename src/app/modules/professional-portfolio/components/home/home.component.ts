@@ -1,4 +1,5 @@
 import { Component , OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,77 +7,83 @@ import { Component , OnInit} from '@angular/core';
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
+ 
   phrases: string[] = [
-    "I'm Computer Science Engineer",
-    "I'm Thengarai Maharajan",
-    "I'm Web Developer"
+    "I'm THENGARAI MAHARAJAN",
+    "I'm a Computer Science Engineer,",
+    "I'm a Web Developer,",
+    "I Design, Develop, Maintain, Build and Deploy Enterprise Level Web Applications"
   ];
-  
+
   characters = "01";
-  scrambledText: { letter: string; isScrambled: boolean }[] = [];
-  currentPhraseIndex = 0;
+  finalText: { letter: string; isScrambled: boolean }[][] = [];
+  animationComplete = false;
   frame = 0;
-  queue: { from: string; to: string; start: number; end: number; char?: string }[] = [];
+  queue: { from: string; to: string; start: number; end: number; char?: string }[][] = [];
   animationInterval!: any;
+
+  constructor(
+    private router :Router
+  ){}
 
   ngOnInit() {
     this.startScrambleAnimation();
   }
 
-  startScrambleAnimation() {
-    this.setScrambledText(this.phrases[this.currentPhraseIndex]).then(() => {
-      setTimeout(() => {
-        this.currentPhraseIndex = (this.currentPhraseIndex + 1) % this.phrases.length;
-        this.startScrambleAnimation();
-      }, 3000);
-    });
+  async startScrambleAnimation() {
+    for (const phrase of this.phrases) {
+      await this.setScrambledText(phrase);
+    }
+    this.animationComplete = true; // Button appears only after all phrases are done
   }
 
   setScrambledText(newText: string): Promise<void> {
     return new Promise((resolve) => {
-      const oldText = this.scrambledText.map(c => c.letter).join("") || "";
-      const maxLength = Math.max(oldText.length, newText.length);
-      this.queue = [];
+      const maxLength = newText.length;
+      const textQueue = [];
+      const outputText = Array(maxLength).fill({ letter: '', isScrambled: false });
 
       for (let i = 0; i < maxLength; i++) {
-        const from = oldText[i] || "";
         const to = newText[i] || "";
         const start = Math.floor(Math.random() * 40);
         const end = start + Math.floor(Math.random() * 40);
-        this.queue.push({ from, to, start, end });
+        textQueue.push({ from: '', to, start, end });
       }
 
+      this.queue.push(textQueue);
+      this.finalText.push(outputText);
       this.frame = 0;
-      clearInterval(this.animationInterval);
-      this.animationInterval = setInterval(() => this.updateText(resolve), 20);
+
+      this.animationInterval = setInterval(() => this.updateText(resolve), 60); // Slower update speed
     });
   }
 
   updateText(resolve: () => void) {
-    let output = [];
     let complete = 0;
+    const currentQueue = this.queue[this.queue.length - 1];
+    const output = this.finalText[this.finalText.length - 1];
 
-    for (let i = 0; i < this.queue.length; i++) {
-      let { from, to, start, end, char } = this.queue[i];
+    for (let i = 0; i < currentQueue.length; i++) {
+      let { from, to, start, end, char } = currentQueue[i];
 
       if (this.frame >= end) {
         complete++;
-        output.push({ letter: to, isScrambled: false });
+        output[i] = { letter: to, isScrambled: false };
       } else if (this.frame >= start) {
         if (!char || Math.random() < 0.28) {
           char = this.randomChar();
-          this.queue[i].char = char;
+          currentQueue[i].char = char;
         }
-        output.push({ letter: char, isScrambled: true });
+        output[i] = { letter: char, isScrambled: true };
       } else {
-        output.push({ letter: from, isScrambled: false });
+        output[i] = { letter: from, isScrambled: false };
       }
     }
 
-    this.scrambledText = output;
+    this.finalText[this.finalText.length - 1] = output;
     this.frame++;
 
-    if (complete === this.queue.length) {
+    if (complete === currentQueue.length) {
       clearInterval(this.animationInterval);
       resolve();
     }
@@ -86,4 +93,8 @@ export class HomeComponent implements OnInit {
     return this.characters.charAt(Math.floor(Math.random() * this.characters.length));
   }
   
+  routeToProfile(){
+    this.router.navigate(['home/profile']);
+  }
+
 }
