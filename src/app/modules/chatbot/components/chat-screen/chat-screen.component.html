@@ -1,4 +1,5 @@
-<div class="chat-container">
+<div class="glass-content">
+  <div class="chat-container">
     <div class="chat-window">
       <div class="chat-message" *ngFor="let msg of messages">
         <div [ngClass]="{'user-message': msg.sender === 'user', 'bot-message': msg.sender === 'bot'}">
@@ -16,4 +17,5 @@
       <button (click)="sendMessage()">Send</button>
     </div>
   </div>
+</div>
   
