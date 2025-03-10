@@ -18,3 +18,7 @@
 .p-as-span{
   display: inline;
 }
+
+.min-vh-95 {
+  min-height: 95vh !important;
+}
