@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     }
     setTimeout(() => {
       this.animationComplete = true;
-    }, 1500);
+    }, 500);
     
   }
 
