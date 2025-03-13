@@ -35,8 +35,8 @@ export class ProjectsComponent {
       route: '/dynamic-forms'
     },
     {
-      title: 'Image Detection & Manual Cropper',
-      description: 'Document scanner using OpenCV and edge detection.',
+      title: 'Edge Detection & Cropper',
+      description: 'Document scanner using OpenCV Implemented edge detection feature for Cropping purpose.',
       route: 'https://thengaraimaharajandev.github.io/Image-Edge-Detection/',
       external: true
     }
