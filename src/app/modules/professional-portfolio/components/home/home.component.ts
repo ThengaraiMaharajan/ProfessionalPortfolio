@@ -101,6 +101,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['home/profile']);
   }
 
+  routeToProjects(){
+    this.router.navigate(['home/projects']);
+  }
+
   downloadResume(){
     const resumeUrl = '../../../../../assets/Resumes/ThengaraiMaharajan_FrontEnd_2.7years.pdf'; // Path to resume file
 
