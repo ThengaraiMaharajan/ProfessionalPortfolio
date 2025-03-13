@@ -1,0 +1,40 @@
+<div class="container py-4">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <a class="text-decoration-none">
+              <div class="glass-content">
+                <div class="text-center" >
+                  <h3 class="card-title m-0 p-0">My Projects and Proof of Concepts</h3>
+                </div>
+              </div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let project of projects">
+        <!-- Use routerLink if not external -->
+        <ng-container *ngIf="!project.external; else externalLink">
+          <a [routerLink]="project.route" class="text-decoration-none">
+            <div class="card glass-card h-100">
+              <div class="card-body">
+                <h4 class="card-title glass-content">{{ project.title }}</h4>
+                <p class="card-text glass-content">{{ project.description }}</p>
+              </div>
+            </div>
+          </a>
+        </ng-container>
+        <!-- External link template -->
+        <ng-template #externalLink>
+          <a [href]="project.route" target="_blank" class="text-decoration-none">
+            <div class="card glass-card h-100">
+              <div class="card-body">
+                <h4 class="card-title glass-content">{{ project.title }}</h4>
+                <p class="card-text glass-content">{{ project.description }}</p>
+              </div>
+            </div>
+          </a>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  

@@ -10,12 +10,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ProjectsComponent } from './components/projects/projects.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProjectsComponent
   ],
   imports: [
     CommonModule,
