@@ -99,7 +99,7 @@ export class HomeComponent implements OnInit {
   }
 
   downloadResume(){
-    const resumeUrl = '../../../../../assets/Resumes/ThengaraiMaharajan-FrontEnd-Angular-2.5years.pdf'; // Path to resume file
+    const resumeUrl = '../../../../../assets/Resumes/ThengaraiMaharajan_FrontEnd_2.7years.pdf'; // Path to resume file
 
     // Open PDF in a new tab
     window.open(resumeUrl, '_blank');
