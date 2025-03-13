@@ -1,21 +1,26 @@
-
-  <div class="chat-container glass-content">
-    <div class="chat-window">
-      <div class="chat-message" *ngFor="let msg of messages">
-        <div [ngClass]="{'user-message': msg.sender === 'user', 'bot-message': msg.sender === 'bot'}">
-          <remark [markdown]="msg.text"></remark>
-        </div>
+<div class="chat-container glass-content">
+  <div class="chat-window">
+    <!-- Skeleton loader appears when isLoading is true -->
+    <div *ngIf="isLoading" class="skeleton-loader">
+      <div class="skeleton-bubble">Loading</div>
+    </div>
+    <!-- Chat messages -->
+    <div class="chat-message" *ngFor="let msg of messages">
+      <div [ngClass]="{'user-message': msg.sender === 'user', 'bot-message': msg.sender === 'bot'}">
+        <remark [markdown]="msg.text"></remark>
       </div>
     </div>
-    <div class="chat-input">
-      <input
-        [(ngModel)]="userInput"
-        type="text"
-        placeholder="Type your message..."
-        (keyup.enter)="sendMessage()"
-      />
-      <button (click)="sendMessage()">Send</button>
-    </div>
   </div>
-
-  
+  <div class="chat-input">
+    <input
+      [(ngModel)]="userInput"
+      type="text"
+      placeholder="Type your message..."
+      (keyup.enter)="sendMessage()"
+      [readonly]="isLoading"
+    />
+    <button (click)="sendMessage()" [disabled]="isLoading" class="btn btn-primary btn-sm">
+      <i class="fa fa-arrow-right" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
