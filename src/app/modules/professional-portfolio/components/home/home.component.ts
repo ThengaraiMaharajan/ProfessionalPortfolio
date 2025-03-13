@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
     "I'm a Web Developer."
   ];
 
-  characters = "01</>(){}!=&#";
+  characters = "0101010101010101";
   finalText: { letter: string; isScrambled: boolean }[][] = [];
   animationComplete = false;
   frame = 0;
