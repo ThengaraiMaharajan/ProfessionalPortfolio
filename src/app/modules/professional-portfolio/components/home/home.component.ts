@@ -35,7 +35,10 @@ export class HomeComponent implements OnInit {
     for (const phrase of this.phrases) {
       await this.setScrambledText(phrase);
     }
-    this.animationComplete = true;
+    setTimeout(() => {
+      this.animationComplete = true;
+    }, 1500);
+    
   }
 
   setScrambledText(newText: string): Promise<void> {
