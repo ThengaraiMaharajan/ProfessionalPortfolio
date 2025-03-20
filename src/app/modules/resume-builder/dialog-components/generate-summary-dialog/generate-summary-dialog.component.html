@@ -14,8 +14,9 @@
 
     <div *ngIf="dialogForm.get('aiResponse')?.value" class="form-group mt-3">
       <label>AI Response</label>
-      <textarea class="form-control" formControlName="aiResponse" rows="5" readonly></textarea>
+      <!-- <textarea class="form-control" formControlName="aiResponse" rows="5" readonly></textarea> -->
       <!-- <div class="markdown-content" [innerHTML]="aiResponse | markdown"></div> -->
+      <remark [markdown]="aiRes"></remark>
       <button type="button" class="btn btn-secondary mt-2" (click)="copyResponse()">Copy</button>
     </div>
   </form>

@@ -13,6 +13,7 @@ export class GenerateSummaryDialogComponent {
 
   dialogForm: FormGroup;
   loading: boolean = false;
+  aiRes : any;
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<GenerateSummaryDialogComponent>,
@@ -36,6 +37,7 @@ export class GenerateSummaryDialogComponent {
         const generatedResponse = response?.candidates?.[0]?.content?.parts[0].text;
         console.log(generatedResponse);
         this.dialogForm.patchValue({ aiResponse: generatedResponse });
+        this.aiRes = generatedResponse;
       }
       this.loading = false;
     }, error => {
