@@ -96,6 +96,12 @@ app-header {
   }
 }
 
+.tm-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* ========== TOP MENU ========== */
 app-top-menu {
   position: fixed;
