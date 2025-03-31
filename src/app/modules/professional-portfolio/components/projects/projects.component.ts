@@ -5,40 +5,52 @@ interface Project {
   description: string;
   route: string;
   external?: boolean;
+  demoLink?: string;
+  codeLink?: string;
 }
 
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrl: './projects.component.css'
+  styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent {
   projects: Project[] = [
     {
       title: 'Chatbot',
       description: 'This AI-powered chatbot leverages Google Gemini API to provide intelligent, real-time responses to user queries.',
-      route: '/chatbot'
+      route: '/chatbot',
+      demoLink: '/chatbot',
+      codeLink: 'https://github.com/thengaraimaharajandev/chatbot-project'
     },
     {
       title: 'Resume Builder',
       description: 'Built with Angular, Bootstrap, jsPDF, allowing users to generate professional PDF resumes dynamically.',
-      route: '/resume-builder'
+      route: '/resume-builder',
+      demoLink: '/resume-builder',
+      codeLink: 'https://github.com/thengaraimaharajandev/resume-builder'
     },
     {
       title: 'Dynamic Forms Generator',
       description: 'Utilizes Angular reactive forms to generate form fields dynamically from user-provided data.',
-      route: '/time-lines-tracker'
+      route: '/dynamic-forms',
+      demoLink: '/dynamic-forms',
+      codeLink: 'https://github.com/thengaraimaharajandev/dynamic-forms'
     },
     {
       title: 'Timeline Tracker',
       description: 'Developed using Angular & ExcelJS to track events and generate Excel reports for better visualization.',
-      route: '/dynamic-forms'
+      route: '/time-lines-tracker',
+      demoLink: '/time-lines-tracker',
+      codeLink: 'https://github.com/thengaraimaharajandev/timeline-tracker'
     },
     {
       title: 'Edge Detection & Cropper',
-      description: 'Document scanner using OpenCV Implemented edge detection feature for Cropping purpose.',
+      description: 'Document scanner using OpenCV. Implemented edge detection feature for cropping purposes.',
       route: 'https://thengaraimaharajandev.github.io/Image-Edge-Detection/',
-      external: true
+      external: true,
+      demoLink: 'https://thengaraimaharajandev.github.io/Image-Edge-Detection/',
+      codeLink: 'https://github.com/thengaraimaharajandev/Image-Edge-Detection'
     }
   ];
 }

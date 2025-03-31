@@ -1,29 +1,37 @@
 <div class="container py-4 mb-4">
-    <div class="row">
-      <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let project of projects">
-        <!-- Use routerLink if not external -->
-        <ng-container *ngIf="!project.external; else externalLink">
-          <a [routerLink]="project.route" class="text-decoration-none">
-            <div class="card glass-card h-100">
-              <div class="card-body">
-                <h4 class="card-title glass-content text-center">{{ project.title }}</h4>
-                <p class="card-text glass-content">{{ project.description }}</p>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let project of projects">
+      <ng-container *ngIf="!project.external; else externalLink">
+        <a [routerLink]="project.route" class="text-decoration-none">
+          <div class="card glass-card h-100">
+            <div class="card-body">
+              <h4 class="card-title text-center">{{ project.title }}</h4>
+              <p class="card-text">{{ project.description }}</p>
+
+              <div class="text-center mt-3">
+                <a *ngIf="project.demoLink" [routerLink]="project.demoLink" class="btn btn-custom me-2">🔍 Demo</a>
+                <a *ngIf="project.codeLink" [href]="project.codeLink" target="_blank" class="btn btn-custom">💻 Code</a>
               </div>
             </div>
-          </a>
-        </ng-container>
-        <!-- External link template -->
-        <ng-template #externalLink>
-          <a [href]="project.route" target="_blank" class="text-decoration-none">
-            <div class="card glass-card h-100">
-              <div class="card-body">
-                <h4 class="card-title glass-content text-center">{{ project.title }}</h4>
-                <p class="card-text glass-content">{{ project.description }}</p>
+          </div>
+        </a>
+      </ng-container>
+
+      <ng-template #externalLink>
+        <a [href]="project.route" target="_blank" class="text-decoration-none">
+          <div class="card glass-card h-100">
+            <div class="card-body">
+              <h4 class="card-title text-center">{{ project.title }}</h4>
+              <p class="card-text">{{ project.description }}</p>
+
+              <div class="text-center mt-3">
+                <a *ngIf="project.demoLink" [href]="project.demoLink" target="_blank" class="btn btn-custom me-2">🔍 Demo</a>
+                <a *ngIf="project.codeLink" [href]="project.codeLink" target="_blank" class="btn btn-custom">💻 Code</a>
               </div>
             </div>
-          </a>
-        </ng-template>
-      </div>
+          </div>
+        </a>
+      </ng-template>
     </div>
+  </div>
 </div>
-  

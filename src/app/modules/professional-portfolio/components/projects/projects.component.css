@@ -1,35 +1,51 @@
 /* Glass card effect */
 .card.glass-card {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    backdrop-filter: blur(8px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card.glass-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* Card text styling */
-  .card-body {
-    min-height: 150px;
-  }
-  
-  .card-title {
-    font-size: 1.25rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
-  }
-  
-  .card-text {
-    font-size: 0.95rem;
-    color: #ccc;
-  }
-  
-  /* Ensuring links do not have default underline */
-  a.text-decoration-none {
-    text-decoration: none;
-  }
-  
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Card text styling */
+.card-body {
+  min-height: 220px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: var(--text-color); /* ✅ Theme-based */
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: var(--text-color); /* ✅ Theme-based */
+}
+
+a.text-decoration-none {
+  text-decoration: none;
+}
+
+/* Custom glass buttons */
+.btn-custom {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--text-color);
+  border: 1px solid var(--glass-shadow);
+  border-radius: 30px;
+  padding: 6px 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-custom:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
