@@ -1,14 +1,25 @@
-<header class="tm-header d-flex align-items-center justify-content-between px-4">
-  <div class="tm-header-left d-flex align-items-center">
-    <button class="tm-sidebar-toggle me-3" (click)="toggleSidebar()">☰</button>
-    <div class="tm-header-logo me-3">TM</div>
-    <h1 class="tm-header-title m-0">Thengarai's Portfolio</h1>
+<header class="tm-header d-flex flex-column">
+  <!-- TOP BAR -->
+  <div class="tm-header-top d-flex justify-content-between align-items-center px-4">
+    <div class="tm-header-left d-flex align-items-center">
+      <button class="tm-sidebar-toggle me-3" (click)="toggleSidebar()">☰</button>
+      <div class="tm-header-logo me-3">TM</div>
+      <h1 class="tm-header-title m-0">Thengarai's Portfolio</h1>
+    </div>
+
+    <div class="tm-header-right">
+      <button class="tm-theme-toggle" (click)="toggleTheme()">
+        {{ isDarkMode ? '🌞 Light' : '🌙 Dark' }}
+      </button>
+    </div>
   </div>
 
-  <!-- RIGHT SIDE -->
-  <div class="tm-header-right">
-    <button class="tm-theme-toggle" (click)="toggleTheme()">
-      {{ isDarkMode ? '🌞 Light' : '🌙 Dark' }}
-    </button>
-  </div>
+  <!-- NAV BAR -->
+  <nav class="tm-top-menu d-flex align-items-center px-4">
+    <a routerLink="/home" routerLinkActive="active" class="tm-menu-item">Home</a>
+    <a routerLink="/resume-builder" routerLinkActive="active" class="tm-menu-item">Resume Builder</a>
+    <a routerLink="/time-lines-tracker" routerLinkActive="active" class="tm-menu-item">Timeline Tracker</a>
+    <a routerLink="/dynamic-forms" routerLinkActive="active" class="tm-menu-item">Dynamic Forms</a>
+    <a routerLink="/chatbot" routerLinkActive="active" class="tm-menu-item">Chatbot</a>
+  </nav>
 </header>
