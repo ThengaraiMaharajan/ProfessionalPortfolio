@@ -1,12 +1,16 @@
 <app-matrix-rain></app-matrix-rain>
 <app-glass-layer>
-  <div class="min-vh-95 d-flex justify-content-center align-items-center">
+  <div class="d-flex justify-content-center align-items-center">
     <div>
       <div class="animated-text-container">
         <div class="glass-content text-center">
           <div class="animated-text">
-            <div *ngFor="let line of displayLines">
-              <p class="animated-line">{{ line }}</p>
+            <div *ngFor="let line of finalText">
+              <p class="animated-line">
+                <span *ngFor="let char of line" [class.dud]="char.isScrambled">
+                  {{ char.letter }}
+                </span>
+              </p>
             </div>
           </div>
         </div>
