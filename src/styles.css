@@ -32,11 +32,13 @@ html {
 }
 
 .tm-main-container {
-  margin-left: 220px;
   margin-top: 110px;
   padding: 20px;
   min-height: calc(100vh - 160px);
+  position: relative;
+  z-index: 1;
 }
+
 
 @media screen and (max-width: 768px) {
   .tm-main-container {
@@ -157,12 +159,18 @@ app-side-nav {
 }
 
 .tm-side-nav {
+  position: fixed;
+  top: 0; /* Full screen from top */
+  left: 0;
+  width: 220px;
+  height: 100vh;
   background-color: var(--glass-bg);
-  height: 100%;
   padding: 1rem;
   border-right: 1px solid var(--glass-shadow);
+  overflow-y: auto;
   transform: translateX(-100%);
-  z-index: 1101;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1101; /* above everything */
 }
 
 .tm-side-nav.open {
@@ -170,13 +178,13 @@ app-side-nav {
 }
 
 .tm-sidebar-overlay {
-  /* position: fixed;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0,0.5);
-  z-index: 1100; */
+  z-index: 1100;
 }
 
 .tm-side-link {
