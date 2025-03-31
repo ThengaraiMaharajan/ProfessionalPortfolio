@@ -269,6 +269,78 @@ app-footer {
 
 
 canvas {
-  z-index: 0 !important;
   pointer-events: none;
+  z-index: 0 !important;
+}
+
+/* ========== Home Scramble Text ========== */
+.animated-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  position: relative;
+  z-index: 22;
+}
+
+.animated-text {
+  text-align: center;
+}
+
+.animated-line {
+  display: block;
+  font-size: 1.5rem;
+  line-height: 2.2rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-shadow: 0 0 6px rgba(0, 255, 0, 0.3);
+  opacity: 0;
+  animation: fadeInLine 0.4s ease forwards;
+}
+
+@keyframes fadeInLine {
+  to {
+    opacity: 1;
+  }
+}
+
+.min-vh-95 {
+  min-height: 95vh !important;
+}
+
+/* ========== Glass Buttons ========== */
+.btn-custom {
+  position: relative;
+  display: inline-block;
+  padding: 10px 10px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-weight: bold;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-custom:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.65s;
+}
+
+.btn-custom:hover:after {
+  left: 100%;
+}
+
+.btn-custom:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
