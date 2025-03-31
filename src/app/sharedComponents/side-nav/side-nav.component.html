@@ -1,0 +1,9 @@
+<div class="tm-sidebar-overlay" *ngIf="visible" (click)="close()"></div>
+
+<nav class="tm-side-nav" [class.open]="visible">
+  <a routerLink="/home" routerLinkActive="active" class="tm-side-link">🏠 Home</a>
+  <a routerLink="/resume-builder" routerLinkActive="active" class="tm-side-link">📄 Resume Builder</a>
+  <a routerLink="/time-lines-tracker" routerLinkActive="active" class="tm-side-link">📊 Timeline Tracker</a>
+  <a routerLink="/dynamic-forms" routerLinkActive="active" class="tm-side-link">📝 Dynamic Forms</a>
+  <a routerLink="/chatbot" routerLinkActive="active" class="tm-side-link">🤖 Chatbot</a>
+</nav>

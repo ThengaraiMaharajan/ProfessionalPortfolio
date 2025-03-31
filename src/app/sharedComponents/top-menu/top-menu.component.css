@@ -1,0 +1,28 @@
+.tm-top-menu {
+    height: 50px;
+    background-color: #2b2b2b;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .tm-menu-item {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+    border-radius: 6px;
+  }
+  
+  .tm-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .tm-menu-item.active {
+    background-color: #00ff99;
+    color: #000;
+    font-weight: bold;
+  }
+  

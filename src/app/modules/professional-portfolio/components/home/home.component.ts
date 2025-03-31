@@ -1,34 +1,37 @@
-import { Component , OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
- 
   phrases: string[] = [
-    "I'm THENGARAI MAHARAJAN",
+    "I'm Thengarai Maharajan",
     "I'm a Computer Science Engineer,",
     "I'm a Web Developer."
   ];
 
-  characters = "0101010101010101";
+  // characters = "01";
+  characters = "01010101";
+  // characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  // characters = "アイウエオカキクケコサシスセソタチツテト";
+
+
   finalText: { letter: string; isScrambled: boolean }[][] = [];
+  displayLines: string[] = [];
   animationComplete = false;
   frame = 0;
   queue: { from: string; to: string; start: number; end: number; char?: string }[][] = [];
   animationInterval!: any;
 
-  constructor(
-    private router :Router
-  ){}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-  setTimeout(() => {
-    this.startScrambleAnimation();
-  }, 4000);
+    setTimeout(() => {
+      this.startScrambleAnimation();
+    }, 4000);
   }
 
   async startScrambleAnimation() {
@@ -37,28 +40,28 @@ export class HomeComponent implements OnInit {
     }
     setTimeout(() => {
       this.animationComplete = true;
-    }, 500);
-    
+    }, 300);
   }
 
   setScrambledText(newText: string): Promise<void> {
     return new Promise((resolve) => {
       const maxLength = newText.length;
       const textQueue = [];
-      const outputText = Array(maxLength).fill({ letter: '', isScrambled: false });
+      const outputText = Array.from({ length: maxLength }, () => ({ letter: '', isScrambled: false }));
 
       for (let i = 0; i < maxLength; i++) {
-        const to = newText[i] || "";
-        const start = Math.floor(Math.random() * 40);
-        const end = start + Math.floor(Math.random() * 40);
+        const to = newText[i] || '';
+        const start = Math.floor(Math.random() * 30);         // faster
+        const end = start + Math.floor(Math.random() * 35);   // faster
         textQueue.push({ from: '', to, start, end });
       }
 
       this.queue.push(textQueue);
       this.finalText.push(outputText);
+      this.displayLines.push('');
       this.frame = 0;
 
-      this.animationInterval = setInterval(() => this.updateText(resolve), 50); // Slower update speed
+      this.animationInterval = setInterval(() => this.updateText(resolve), 30);
     });
   }
 
@@ -74,7 +77,7 @@ export class HomeComponent implements OnInit {
         complete++;
         output[i] = { letter: to, isScrambled: false };
       } else if (this.frame >= start) {
-        if (!char || Math.random() < 0.28) {
+        if (!char || Math.random() < 0.4) {
           char = this.randomChar();
           currentQueue[i].char = char;
         }
@@ -85,6 +88,7 @@ export class HomeComponent implements OnInit {
     }
 
     this.finalText[this.finalText.length - 1] = output;
+    this.displayLines[this.displayLines.length - 1] = output.map(c => c.letter).join('');
     this.frame++;
 
     if (complete === currentQueue.length) {
@@ -96,22 +100,19 @@ export class HomeComponent implements OnInit {
   randomChar(): string {
     return this.characters.charAt(Math.floor(Math.random() * this.characters.length));
   }
-  
-  routeToProfile(){
+
+  routeToProfile() {
     this.router.navigate(['home/profile']);
   }
 
-  routeToProjects(){
+  routeToProjects() {
     this.router.navigate(['home/projects']);
   }
 
-  downloadResume(){
-    const resumeUrl = '../../../../../assets/Resumes/ThengaraiMaharajan_FrontEnd_2.7years.pdf'; // Path to resume file
-
-    // Open PDF in a new tab
+  downloadResume() {
+    const resumeUrl = '../../../../../assets/Resumes/ThengaraiMaharajan_FrontEnd_2.7years.pdf';
     window.open(resumeUrl, '_blank');
 
-    // Trigger the download programmatically
     const link = document.createElement('a');
     link.href = resumeUrl;
     link.download = 'ThengaraiMaharajan-Resume.pdf';
@@ -119,5 +120,4 @@ export class HomeComponent implements OnInit {
     link.click();
     document.body.removeChild(link);
   }
-
 }

@@ -10,14 +10,18 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { RemarkModule } from 'ngx-remark';
-import { MatrixRainComponent } from './sharedComponents/matrix-rain/matrix-rain.component';
-import { GlassLayerComponent } from './sharedComponents/glass-layer/glass-layer.component';
+import { HeaderComponent } from './sharedComponents/header/header.component';
+import { TopMenuComponent } from './sharedComponents/top-menu/top-menu.component';
+import { SideNavComponent } from './sharedComponents/side-nav/side-nav.component';
+import { FooterComponent } from './sharedComponents/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MatrixRainComponent,
-    GlassLayerComponent
+    HeaderComponent,
+    TopMenuComponent,
+    SideNavComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

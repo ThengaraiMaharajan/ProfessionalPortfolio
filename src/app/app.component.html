@@ -1,6 +1,11 @@
-<app-matrix-rain></app-matrix-rain>
-<app-glass-layer>
-  <main class="content-container">
-    <router-outlet></router-outlet>
-  </main>
-</app-glass-layer>
+<app-header (sidebarToggle)="toggleSidebar()"></app-header>
+<app-top-menu></app-top-menu>
+
+<!-- Sidebar overlays content -->
+<app-side-nav [visible]="isSidebarVisible" (closeSidebar)="toggleSidebar()"></app-side-nav>
+
+<main class="tm-main-container">
+  <router-outlet></router-outlet>
+</main>
+
+<app-footer></app-footer>

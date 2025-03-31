@@ -1,30 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { AnalyticsService } from './services/analytics.service';
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
-
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  isSidebarVisible = false;
 
-  isSidebarVisible = true;
-
-  constructor(
-    private analytics : AnalyticsService
-  ){}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    console.log("Seriously ?");
-    console.log("you're INSPECTING!!!");
-    console.log("What are you Inspecting?");
-    console.log("Don't Dig Deeper");
+    // Listen for route changes and hide sidebar
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isSidebarVisible = false;
+      }
+    });
   }
 
-  toggleSidebar() {
+  toggleSidebar(): void {
     this.isSidebarVisible = !this.isSidebarVisible;
   }
-
 }

@@ -1,6 +1,4 @@
 .animated-text-container {
-  /* height: 100vh; */
-  /* width: 100vw; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,19 +8,15 @@
   text-align: center;
 }
 
-.dud {
-  color: grey;
-}
-
-
-.p-as-span{
-  display: inline;
+.animated-line {
+  display: block;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .min-vh-95 {
   min-height: 95vh !important;
 }
-
 
 .btn-custom {
   position: relative;
