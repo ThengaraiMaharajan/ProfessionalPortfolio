@@ -34,11 +34,12 @@ export class SettingsComponent {
 
   resetSettings() {
     this.fontSize = 100;
-    document.documentElement.style.setProperty('--font-scale', `100%`);
-  
-    if (this.isDarkMode) {
-      this.toggleTheme.emit(); // switch back to light if dark
-    }
+  document.documentElement.style.setProperty('--font-scale', `100%`);
+
+  // ✅ Force theme to dark if it's not already
+  if (!this.isDarkMode) {
+    this.toggleTheme.emit();
+  }
   }
   
 

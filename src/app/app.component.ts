@@ -15,15 +15,18 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     const savedTheme = localStorage.getItem('theme');
-    this.isDarkMode = savedTheme === 'dark';
-    this.applyTheme();
 
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.isSidebarVisible = false;
-        this.isSettingsVisible = false;
-      }
-    });
+  // 👉 Default to dark if nothing is saved
+  this.isDarkMode = savedTheme ? savedTheme === 'dark' : true;
+
+  this.applyTheme();
+
+  this.router.events.subscribe(event => {
+    if (event instanceof NavigationEnd) {
+      this.isSidebarVisible = false;
+      this.isSettingsVisible = false;
+    }
+  });
   }
 
   toggleSidebar(): void {
@@ -41,13 +44,15 @@ export class AppComponent implements OnInit {
 
   applyTheme(): void {
     const html = document.documentElement;
-    if (this.isDarkMode) {
-      html.classList.add('tm-dark-theme');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      html.classList.remove('tm-dark-theme');
-      localStorage.setItem('theme', 'light');
-    }
+  if (this.isDarkMode) {
+    html.classList.add('tm-dark-theme');
+    localStorage.setItem('theme', 'dark');
+    console.log('🌙 Dark theme applied');
+  } else {
+    html.classList.remove('tm-dark-theme');
+    localStorage.setItem('theme', 'light');
+    console.log('🌞 Light theme applied');
+  }
   }
 }
 

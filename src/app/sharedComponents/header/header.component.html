@@ -2,14 +2,14 @@
   <!-- LEFT: Logo + Title -->
   <div class="d-flex align-items-center">
     <button class="tm-sidebar-toggle me-3" (click)="toggleSidebar()">☰</button>
-    <div class="tm-header-logo me-3 cursor-pointer" routerLink="/home/profile" >TM</div>
+    <div class="tm-header-logo me-3 cursor-pointer" routerLink="/home" >TM</div>
   </div>
 
   <!-- CENTER: NAV LINKS -->
   <nav class="tm-top-menu d-flex align-items-center">
     <a routerLink="/home"          routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  class="tm-menu-item"                               > Home</a>
     <a routerLink="/home/profile"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  class="tm-menu-item"                               > Explore</a>
-    <a routerLink="/home/profile"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  class="tm-menu-item" (click)="downloadResumePdf()" > Download Resume</a>
+    <a routerLink="/home/profile"  class="tm-menu-item" (click)="downloadResumePdf()" > Download Resume</a>
     <a routerLink="/home/projects" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  class="tm-menu-item"                               > Projects</a>
   </nav>
 
