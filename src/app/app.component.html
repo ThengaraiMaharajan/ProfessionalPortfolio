@@ -1,7 +1,17 @@
-<app-header (sidebarToggle)="toggleSidebar()" (themeToggle)="toggleTheme()" [isDarkMode]="isDarkMode"></app-header>
+<app-header 
+  (sidebarToggle)="toggleSidebar()" 
+  (themeToggle)="toggleSettings()" 
+  [isDarkMode]="isDarkMode">
+</app-header>
 
 <app-side-nav [visible]="isSidebarVisible" (closeSidebar)="toggleSidebar()"></app-side-nav>
 
+<app-settings 
+  [visible]="isSettingsVisible"
+  [isDarkMode]="isDarkMode"
+  (toggleTheme)="toggleTheme()"
+  (close)="toggleSettings()">
+</app-settings>
 
 <main class="tm-main-container">
   <router-outlet></router-outlet>

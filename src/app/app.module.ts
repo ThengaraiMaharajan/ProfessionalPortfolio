@@ -13,13 +13,15 @@ import { RemarkModule } from 'ngx-remark';
 import { HeaderComponent } from './sharedComponents/header/header.component';
 import { SideNavComponent } from './sharedComponents/side-nav/side-nav.component';
 import { FooterComponent } from './sharedComponents/footer/footer.component';
+import { SettingsComponent } from './sharedComponents/settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SideNavComponent,
-    FooterComponent
+    FooterComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

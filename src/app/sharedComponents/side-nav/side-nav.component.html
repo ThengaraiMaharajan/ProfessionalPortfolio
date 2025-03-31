@@ -2,8 +2,7 @@
 
 <nav class="tm-side-nav" [class.open]="visible">
   <a routerLink="/home" routerLinkActive="active" class="tm-side-link">🏠 Home</a>
-  <a routerLink="/resume-builder" routerLinkActive="active" class="tm-side-link">📄 Resume Builder</a>
-  <a routerLink="/time-lines-tracker" routerLinkActive="active" class="tm-side-link">📊 Timeline Tracker</a>
-  <a routerLink="/dynamic-forms" routerLinkActive="active" class="tm-side-link">📝 Dynamic Forms</a>
-  <a routerLink="/chatbot" routerLinkActive="active" class="tm-side-link">🤖 Chatbot</a>
+  <a routerLink="/home/profile" routerLinkActive="active" class="tm-side-link">🔍 Explore</a>
+  <a routerLink="/home/profile" (click)="downloadResumePdf()" class="tm-side-link">📄 Resume</a>
+  <a routerLink="/home/projects" routerLinkActive="active" class="tm-side-link">🧪 Projects</a>
 </nav>

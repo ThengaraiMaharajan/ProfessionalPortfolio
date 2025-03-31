@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ResumeDownloaderService } from '../../services/resume-downloader.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -9,7 +10,14 @@ export class SideNavComponent {
   @Input() visible = false;
   @Output() closeSidebar = new EventEmitter<void>();
 
+  constructor( private resumeDownloaderService : ResumeDownloaderService) {}
+
   close() {
     this.closeSidebar.emit();
   }
+
+  downloadResumePdf() {
+    this.resumeDownloaderService.downloadResume();
+  }
+
 }

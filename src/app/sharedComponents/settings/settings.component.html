@@ -1,0 +1,14 @@
+<div class="tm-settings-overlay" *ngIf="visible" (click)="closePanel()"></div>
+
+<nav class="right-settings-nav" [class.open]="visible">
+  <h5 class="text-center">⚙️ Settings</h5>
+  
+  <div class="settings-controls">
+    <button class="btn-custom" (click)="increaseFont()">A+</button>
+    <button class="btn-custom" (click)="decreaseFont()">A-</button>
+
+    <button class="btn-custom" (click)="toggleThemeMode()">
+      {{ isDarkMode ? '🌞 Light Mode' : '🌙 Dark Mode' }}
+    </button>
+  </div>
+</nav>

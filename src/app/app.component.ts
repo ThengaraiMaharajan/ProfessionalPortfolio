@@ -8,6 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   isSidebarVisible = false;
+  isSettingsVisible = false;  // new
   isDarkMode = false;
 
   constructor(private router: Router) {}
@@ -17,16 +18,20 @@ export class AppComponent implements OnInit {
     this.isDarkMode = savedTheme === 'dark';
     this.applyTheme();
 
-    // ✅ Close sidebar on route change
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isSidebarVisible = false;
+        this.isSettingsVisible = false;
       }
     });
   }
 
   toggleSidebar(): void {
     this.isSidebarVisible = !this.isSidebarVisible;
+  }
+
+  toggleSettings(): void {
+    this.isSettingsVisible = !this.isSettingsVisible;
   }
 
   toggleTheme(): void {
@@ -45,3 +50,4 @@ export class AppComponent implements OnInit {
     }
   }
 }
+

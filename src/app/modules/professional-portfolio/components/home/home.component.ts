@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ResumeDownloaderService } from '../../../../services/resume-downloader.service';
 
 @Component({
   selector: 'app-home',
@@ -26,12 +27,16 @@ export class HomeComponent implements OnInit {
   queue: { from: string; to: string; start: number; end: number; char?: string }[][] = [];
   animationInterval!: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private resumeDownloaderService : ResumeDownloaderService) {}
 
   ngOnInit() {
     setTimeout(() => {
       this.startScrambleAnimation();
     }, 4000);
+  }
+
+  downloadResumePdf() {
+    this.resumeDownloaderService.downloadResume();
   }
 
   async startScrambleAnimation() {

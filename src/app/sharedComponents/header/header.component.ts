@@ -1,4 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ResumeDownloaderService } from '../../services/resume-downloader.service';
+
 
 @Component({
   selector: 'app-header',
@@ -10,8 +12,14 @@ export class HeaderComponent {
   @Output() sidebarToggle = new EventEmitter<void>();
   @Output() themeToggle = new EventEmitter<void>();
 
+  constructor( private resumeDownloaderService : ResumeDownloaderService) {}
+
   toggleSidebar() {
     this.sidebarToggle.emit();
+  }
+
+  downloadResumePdf() {
+    this.resumeDownloaderService.downloadResume();
   }
 
   toggleTheme() {
