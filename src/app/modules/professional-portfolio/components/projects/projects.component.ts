@@ -21,28 +21,28 @@ export class ProjectsComponent {
       description: 'This AI-powered chatbot leverages Google Gemini API to provide intelligent, real-time responses to user queries.',
       route: '/chatbot',
       demoLink: '/chatbot',
-      codeLink: 'https://github.com/thengaraimaharajandev/chatbot-project'
+      codeLink: 'https://github.com/ThengaraiMaharajan/chatbot'
     },
     {
       title: 'Resume Builder',
       description: 'Built with Angular, Bootstrap, jsPDF, allowing users to generate professional PDF resumes dynamically.',
       route: '/resume-builder',
       demoLink: '/resume-builder',
-      codeLink: 'https://github.com/thengaraimaharajandev/resume-builder'
+      codeLink: 'https://github.com/ThengaraiMaharajan/Angular_ResumeBuilder'
     },
     {
       title: 'Dynamic Forms Generator',
       description: 'Utilizes Angular reactive forms to generate form fields dynamically from user-provided data.',
       route: '/dynamic-forms',
       demoLink: '/dynamic-forms',
-      codeLink: 'https://github.com/thengaraimaharajandev/dynamic-forms'
+      codeLink: 'https://github.com/ThengaraiMaharajan/Angular_ReactiveFormBuilder'
     },
     {
       title: 'Timeline Tracker',
       description: 'Developed using Angular & ExcelJS to track events and generate Excel reports for better visualization.',
       route: '/time-lines-tracker',
       demoLink: '/time-lines-tracker',
-      codeLink: 'https://github.com/thengaraimaharajandev/timeline-tracker'
+      codeLink: 'https://github.com/ThengaraiMaharajan/Angular_TimeLineTracker'
     },
     {
       title: 'Edge Detection & Cropper',
@@ -50,7 +50,7 @@ export class ProjectsComponent {
       route: 'https://thengaraimaharajandev.github.io/Image-Edge-Detection/',
       external: true,
       demoLink: 'https://thengaraimaharajandev.github.io/Image-Edge-Detection/',
-      codeLink: 'https://github.com/thengaraimaharajandev/Image-Edge-Detection'
+      codeLink: 'https://github.com/ThengaraiMaharajan/ImageCropDetection'
     }
   ];
 }
