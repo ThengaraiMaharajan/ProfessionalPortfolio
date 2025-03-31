@@ -1,8 +1,8 @@
 <div class="tm-sidebar-overlay" *ngIf="visible" (click)="close()"></div>
 
 <nav class="tm-side-nav" [class.open]="visible">
-  <a routerLink="/home" routerLinkActive="active" class="tm-side-link">🏠 Home</a>
-  <a routerLink="/home/profile" routerLinkActive="active" class="tm-side-link">🔍 Explore</a>
-  <a routerLink="/home/profile" (click)="downloadResumePdf()" class="tm-side-link">📄 Resume</a>
-  <a routerLink="/home/projects" routerLinkActive="active" class="tm-side-link">🧪 Projects</a>
+  <a routerLink="/home"          routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="tm-side-link">🏠 Home</a>
+  <a routerLink="/home/profile"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="tm-side-link">🔍 Explore</a>
+  <a routerLink="/home/profile"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="tm-side-link" (click)="downloadResumePdf()">📄 Resume</a>
+  <a routerLink="/home/projects" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="tm-side-link">🧪 Projects</a>
 </nav>
