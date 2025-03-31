@@ -1,24 +1,22 @@
-<header class="tm-header d-flex flex-column">
-  <!-- TOP BAR -->
-  <div class="tm-header-top d-flex justify-content-between align-items-center px-4">
-    <div class="tm-header-left d-flex align-items-center">
-      <button class="tm-sidebar-toggle me-3" (click)="toggleSidebar()">☰</button>
-      <div class="tm-header-logo me-3">TM</div>
-      <h1 class="tm-header-title m-0">Thengarai's Portfolio</h1>
-    </div>
-
-    <div class="tm-header-right">
-      <button class="tm-theme-toggle" (click)="toggleTheme()">
-        ⚙️
-      </button>
-    </div>    
+<header class="tm-header d-flex justify-content-between align-items-center px-4">
+  <!-- LEFT: Logo + Title -->
+  <div class="d-flex align-items-center">
+    <button class="tm-sidebar-toggle me-3" (click)="toggleSidebar()">☰</button>
+    <div class="tm-header-logo me-3 cursor-pointer" routerLink="/home/profile" >TM</div>
   </div>
 
-  <!-- NAV BAR -->
-  <nav class="tm-top-menu d-flex align-items-center px-4">
+  <!-- CENTER: NAV LINKS -->
+  <nav class="tm-top-menu d-flex align-items-center">
     <a routerLink="/home" routerLinkActive="active" class="tm-menu-item">Home</a>
     <a routerLink="/home/profile" routerLinkActive="active" class="tm-menu-item">Explore</a>
-    <a routerLink="/home/profile" (click)="downloadResumePdf()" class="tm-menu-item">Download Resume</a>
+    <a href="javascript:void(0)" (click)="downloadResumePdf()" class="tm-menu-item">Download Resume</a>
     <a routerLink="/home/projects" routerLinkActive="active" class="tm-menu-item">Projects</a>
   </nav>
+
+  <!-- RIGHT: Settings Toggle -->
+  <div class="tm-header-right">
+    <button class="tm-theme-toggle" (click)="toggleTheme()">
+      ⚙️
+    </button>
+  </div>
 </header>
