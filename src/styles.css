@@ -50,7 +50,7 @@ app-header {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1001;
+  z-index: 1000;
 }
 
 .tm-header {
@@ -157,6 +157,7 @@ app-side-nav {
   padding: 1rem;
   border-right: 1px solid var(--glass-shadow);
   transform: translateX(-100%);
+  z-index: 1101;
 }
 
 .tm-side-nav.open {
@@ -170,7 +171,7 @@ app-side-nav {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0,0.5);
-  z-index: 998;
+  z-index: 1100;
 }
 
 .tm-side-link {
@@ -249,4 +250,10 @@ app-footer {
 
 .tm-theme-toggle:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+canvas {
+  z-index: 0 !important;
+  pointer-events: none;
 }
