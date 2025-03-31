@@ -1,5 +1,28 @@
 ::ng-deep body{
-    font-family: "Ubuntu", sans-serif;
+  font-family: "Ubuntu", sans-serif;
   font-weight: 300;
   font-style: normal;
+}
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-shadow: rgba(255, 255, 255, 0.2);
+}
+
+.tm-dark-theme {
+  --bg-color: #0d0d0d;
+  --text-color: #f1f1f1;
+  --glass-bg: rgba(0, 0, 0, 0.4);
+  --glass-shadow: rgba(0, 0, 0, 0.3);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

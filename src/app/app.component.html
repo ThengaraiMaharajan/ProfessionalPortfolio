@@ -1,4 +1,9 @@
-<app-header (sidebarToggle)="toggleSidebar()"></app-header>
+<app-header
+  (sidebarToggle)="toggleSidebar()"
+  (themeToggle)="toggleTheme()"
+  [isDarkMode]="isDarkMode">
+</app-header>
+
 <app-top-menu></app-top-menu>
 
 <!-- Sidebar overlays content -->

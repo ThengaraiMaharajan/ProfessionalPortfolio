@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,19 +7,35 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   isSidebarVisible = false;
-
-  constructor(private router: Router) {}
+  isDarkMode = false;
 
   ngOnInit(): void {
-    // Listen for route changes and hide sidebar
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.isSidebarVisible = false;
-      }
-    });
+    const savedTheme = localStorage.getItem('theme');
+    this.isDarkMode = savedTheme === 'dark';
+    this.applyTheme();
+
+    // Sidebar closes on route change
+    // ... (already added earlier)
   }
 
   toggleSidebar(): void {
     this.isSidebarVisible = !this.isSidebarVisible;
   }
+
+  toggleTheme(): void {
+    this.isDarkMode = !this.isDarkMode;
+    this.applyTheme();
+  }
+
+  applyTheme(): void {
+    const html = document.documentElement; // <html>
+    if (this.isDarkMode) {
+      html.classList.add('tm-dark-theme');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      html.classList.remove('tm-dark-theme');
+      localStorage.setItem('theme', 'light');
+    }
+  }
+  
 }
