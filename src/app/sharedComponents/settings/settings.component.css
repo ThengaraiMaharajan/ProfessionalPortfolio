@@ -34,3 +34,13 @@
     z-index: 1101;
   }
   
+  .btn-warning {
+    background-color: rgba(255, 153, 0, 0.2);
+    border: 1px solid orange;
+    color: orange;
+  }
+  
+  .btn-warning:hover {
+    background-color: rgba(255, 153, 0, 0.3);
+  }
+  
