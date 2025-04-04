@@ -7,7 +7,7 @@ export class ResumeDownloaderService {
 
   constructor() { }
 
-  private resumeUrl = 'assets/Resumes/ThengaraiMaharajan_FrontEnd_2.7years.pdf';
+  private resumeUrl = 'assets/Resumes/ThengaraiMaharajan-FrontEnd-Angular-2.8years.pdf';
 
   downloadResume() {
     window.open(this.resumeUrl, '_blank');
