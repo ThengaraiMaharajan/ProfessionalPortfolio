@@ -11,89 +11,83 @@ export class HomeComponent implements OnInit {
   phrases: string[] = [
     "I'm Thengarai Maharajan",
     "I'm a Computer Science Engineer,",
-    "I'm a Web Developer."
+    "I'm a Web Developer.",
   ];
 
-  // characters = "01";
-  characters = "01010101";
-  // characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  // characters = "アイウエオカキクケコサシスセソタチツテト";
-
-
-  finalText: { letter: string; isScrambled: boolean }[][] = [];
+  characters = '01010101';
   displayLines: string[] = [];
+  queue: { to: string; start: number; end: number; char?: string }[][] = [];
   animationComplete = false;
   frame = 0;
-  queue: { from: string; to: string; start: number; end: number; char?: string }[][] = [];
   animationInterval!: any;
 
-  constructor(private router: Router, private resumeDownloaderService : ResumeDownloaderService) {}
+  constructor(
+    private router: Router,
+    private resumeDownloaderService: ResumeDownloaderService
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     setTimeout(() => {
       this.startScrambleAnimation();
     }, 4000);
   }
 
-  downloadResumePdf() {
+  downloadResumePdf(): void {
     this.resumeDownloaderService.downloadResume();
   }
 
   async startScrambleAnimation() {
     for (const phrase of this.phrases) {
-      await this.setScrambledText(phrase);
+      await this.animateTextLine(phrase);
     }
     setTimeout(() => {
       this.animationComplete = true;
     }, 300);
   }
 
-  setScrambledText(newText: string): Promise<void> {
+  animateTextLine(newText: string): Promise<void> {
     return new Promise((resolve) => {
+      const queueLine = [];
       const maxLength = newText.length;
-      const textQueue = [];
-      const outputText = Array.from({ length: maxLength }, () => ({ letter: '', isScrambled: false }));
 
       for (let i = 0; i < maxLength; i++) {
         const to = newText[i] || '';
-        const start = Math.floor(Math.random() * 30);         // faster
-        const end = start + Math.floor(Math.random() * 35);   // faster
-        textQueue.push({ from: '', to, start, end });
+        const start = Math.floor(Math.random() * 20);
+        const end = start + Math.floor(Math.random() * 30);
+        queueLine.push({ to, start, end });
       }
 
-      this.queue.push(textQueue);
-      this.finalText.push(outputText);
+      this.queue.push(queueLine);
       this.displayLines.push('');
       this.frame = 0;
 
-      this.animationInterval = setInterval(() => this.updateText(resolve), 30);
+      this.animationInterval = setInterval(() => this.updateLine(resolve), 30);
     });
   }
 
-  updateText(resolve: () => void) {
-    let complete = 0;
+  updateLine(resolve: () => void) {
     const currentQueue = this.queue[this.queue.length - 1];
-    const output = this.finalText[this.finalText.length - 1];
+    let lineOutput = '';
+    let complete = 0;
 
     for (let i = 0; i < currentQueue.length; i++) {
-      let { from, to, start, end, char } = currentQueue[i];
+      let { to, start, end, char } = currentQueue[i];
 
       if (this.frame >= end) {
         complete++;
-        output[i] = { letter: to, isScrambled: false };
+        lineOutput += to;
       } else if (this.frame >= start) {
         if (!char || Math.random() < 0.4) {
           char = this.randomChar();
           currentQueue[i].char = char;
         }
-        output[i] = { letter: char, isScrambled: true };
+        lineOutput += char;
       } else {
-        output[i] = { letter: from, isScrambled: false };
+        lineOutput += ' ';
       }
     }
 
-    this.finalText[this.finalText.length - 1] = output;
-    this.displayLines[this.displayLines.length - 1] = output.map(c => c.letter).join('');
+    this.displayLines[this.displayLines.length - 1] = lineOutput;
     this.frame++;
 
     if (complete === currentQueue.length) {
@@ -106,23 +100,11 @@ export class HomeComponent implements OnInit {
     return this.characters.charAt(Math.floor(Math.random() * this.characters.length));
   }
 
-  routeToProfile() {
+  routeToProfile(): void {
     this.router.navigate(['home/profile']);
   }
 
-  routeToProjects() {
+  routeToProjects(): void {
     this.router.navigate(['home/projects']);
-  }
-
-  downloadResume() {
-    const resumeUrl = '../../../../../assets/Resumes/ThengaraiMaharajan_FrontEnd_2.7years.pdf';
-    window.open(resumeUrl, '_blank');
-
-    const link = document.createElement('a');
-    link.href = resumeUrl;
-    link.download = 'ThengaraiMaharajan-Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   }
 }
