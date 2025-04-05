@@ -46,19 +46,20 @@ export class DynamicFormCreateComponent {
 
   createItem() {
     return this.fb.group({
-      name:  ['',[Validators.required]],
-      label : '',
-      value :'',
-      type: ['',[Validators.required]],
-      placeholder : '',
+      name  : [null,[Validators.required]],
+      label :  null,
+      value :  null,
+      type  : [null,[Validators.required]],
+      placeholder : null,
       validatorPresence :  [false,[Validators.required]],
       validators: this.fb.group({
-        required: false,
-        minLength:'',
-        maxLength:'',
-        pattern:'',
-        min : '',
-        max : ''
+        required:  false,
+        minLength:  null,
+        maxLength:  null,
+        pattern:    null,
+        min :       null,
+        max :       null,
+        isReqTrue : null
       }),
       options: this.fb.array([])
     });

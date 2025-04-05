@@ -12,80 +12,107 @@
               <div *ngFor="let item of items.controls; let i=index">
                 <div [formGroupName]="i" class="border mt-2"> 
                   
-                  <div  class="p-2">
-                    <div class="row" >
-                      <div class="col">
-                        Form Field :  {{i+1}} 
+                  <div class="p-1">
+                    <div class="p-0 m-0 row" >
+                      <div class="p-0 m-0 col">
+                        <div class="d-flex justify-content-center align-items-center" >
+                          Form Field :  {{i+1}} 
+                        </div>
                       </div>
-                      <div class="col">
-                        <button type="button" (click)="removeItem(i)" class="btn btn-sm btn-danger" >Remove</button>
+                      <div class="p-0 m-0 col">
+                        <div class="d-flex justify-content-end align-items-center" >
+                          <button type="button" (click)="removeItem(i)" class="btn btn-sm btn-danger" >
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                          </button>
+                        </div>
                       </div>
+                    </div>
+
+                    <div class="form-group" >
+                      <label for="type+{{i}}" class="m-0 p-0">Form Field Type</label> <span class="text-danger" >*</span>
+                      <select formControlName="type" class="form-control" id="type+{{i}}">
+                        <option value="" selected disabled> Choose an Option</option>
+                        <option value="text"      > text     </option>
+                        <option value="number"    > number   </option>
+                        <option value="radio"     > radio    </option>
+                        <option value="checkbox"  > checkbox </option>
+                        <option value="password"  > password </option>
+                        <option value="email"     > email    </option>
+                        <option value="date"      > date     </option>
+                        <option value="select"    > select   </option>
+                      </select>
                     </div>
   
                     <div class="form-group" >
-                      <label for="Name" class="m-0 p-0">Name</label> <span class="text-danger" >*</span> 
-                      <input formControlName="name" placeholder="Enter text for form name" class="form-control" id="Name">
+                      <label for="name{{i}}" class="m-0 p-0">Form Field Name (key / property name)</label> <span class="text-danger" >*</span>
+                      <input formControlName="name" placeholder="Enter text for form name" class="form-control" id="name{{i}}">
                     </div>
     
                     <div class="form-group" >
-                      <label for="label" class="m-0 p-0">Label</label> 
-                      <input formControlName="label" placeholder="Enter text for label" class="form-control" id="label">
-                    </div>
-                    
-                    <div class="form-group" >
-                      <label for="type" class="m-0 p-0">Type</label> <span class="text-danger" >*</span>
-                      <select formControlName="type" class="form-control" id="type">
-                        <option value="text">text</option>
-                        <option value="number">number</option>
-                        <option value="date">date</option>
-                        <option value="email">email</option>
-                        <option value="radio">radio</option>
-                        <option value="select">select</option>
-                      </select>
+                      <label for="label{{i}}" class="m-0 p-0">Form Field Label</label> 
+                      <input formControlName="label" placeholder="Enter text for label" class="form-control" id="label{{i}}">
                     </div>
                     
                     <div class="form-group">
-                      <label for="placeholder" class="m-0 p-0">placeholder</label>
-                      <input formControlName="placeholder" placeholder="Enter text for placeholder" class="form-control" id="placeholder">
+                      <label for="placeholder{{i}}" class="m-0 p-0">Placeholder</label>
+                      <input formControlName="placeholder" placeholder="Enter text for placeholder" class="form-control" id="placeholder{{i}}">
                     </div>
                     
                     <div class="form-group">
-                      <label class="m-0 p-0">isValidators</label> <span class="text-danger" >*</span>
+                      <label class="m-0 p-0">Form Validation</label> <span class="text-danger" >*</span>
                       <br>
-                      <input type="radio" formControlName="validatorPresence" name="validatorPresence" id="validatorPresenceYes" value="true">&nbsp;<label class="m-0 p-0" for="validatorPresenceYes">Yes</label> &nbsp; &nbsp;
-                      <input type="radio" formControlName="validatorPresence" name="validatorPresence" id="validatorPresenceNo" value="false">&nbsp;<label class="m-0 p-0" for="validatorPresenceNo">No</label>
+                      <input type="radio" formControlName="validatorPresence" name="validatorPresence" id="validatorPresenceYes{{i}}" value="true">
+                      &nbsp;
+                      <label class="m-0 p-0" for="validatorPresenceYes{{i}}">
+                        Yes
+                      </label> &nbsp; &nbsp;
+                      <input type="radio" formControlName="validatorPresence" name="validatorPresence" id="validatorPresenceNo{{i}}" value="false">
+                      &nbsp;
+                      <label class="m-0 p-0" for="validatorPresenceNo{{i}}">
+                        No
+                      </label>
                     </div>
                   
     
-                    <div formGroupName="validators" *ngIf="item.get('validatorPresence')?.value == 'true'">
+                    <div formGroupName="validators" *ngIf="item.get('validatorPresence')?.value === 'true'">
                       <div class="form-group">
                         <label class="m-0 p-0">required</label>
                         <br>
-                        <input type="radio" formControlName="required" name="required" value="true" id="requiredYes"/>&nbsp;<label for="requiredYes">Yes</label> &nbsp; &nbsp;
-                        <input type="radio" formControlName="required" name="required" value="false" id="requiredNo"/>&nbsp;<label for="requiredNo">No</label>
+                        <input type="radio" formControlName="required" name="required" value="true" id="requiredYes{{i}}"/>&nbsp;<label for="requiredYes{{i}}">Yes</label> &nbsp; &nbsp;
+                        <input type="radio" formControlName="required" name="required" value="false" id="requiredNo{{i}}"/>&nbsp;<label for="requiredNo{{i}}">No</label>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="pattern{{i}}" class="m-0 p-0">pattern</label>
+                        <input type="text" class="form-control" formControlName="pattern" placeholder="Enter validators" id="pattern{{i}}" />
+                      </div>
+                      <div class="form-group">
+                        <button class="btn btn-sm btn-success" >Ask AI</button>
                       </div>
     
                       <div class="form-group">
-                        <label class="m-0 p-0">minlength</label>
-                        <input class="form-control" formControlName="minLength" placeholder="Enter validators">
+                        <label for="minLength{{i}}" class="m-0 p-0">minlength</label>
+                        <input type="number" class="form-control" formControlName="minLength" placeholder="Enter validators" id="minLength{{i}}" />
                       </div>
+
                       <div class="form-group">
-                        <label class="m-0 p-0">maxlength</label>
-                        <input class="form-control" formControlName="maxLength" placeholder="Enter validators">
+                        <label for="maxLength{{i}}" class="m-0 p-0">maxlength</label>
+                        <input type="number" class="form-control" formControlName="maxLength" placeholder="Enter validators" id="maxLength{{i}}" />
                       </div>
-                      <div class="form-group">
-                        <label class="m-0 p-0">min</label>
-                        <input class="form-control" formControlName="min" placeholder="Enter validators">
-                      </div>
-                      
-                      <div class="form-group">
-                        <label class="m-0 p-0">max</label>
-                        <input class="form-control" formControlName="max" placeholder="Enter validators">
+
+                      <div *ngIf="item.get('type')?.value == 'number'" class="form-group">
+                        <label for="min{{i}}" class="m-0 p-0">min</label>
+                        <input type="number" class="form-control" formControlName="min" placeholder="Enter validators" id="min{{i}}" />
                       </div>
                       
-                      <div class="form-group">
-                        <label class="m-0 p-0">pattern</label>
-                        <input class="form-control" formControlName="pattern" placeholder="Enter validators">
+                      <div *ngIf="item.get('type')?.value == 'number'" class="form-group">
+                        <label for="max{{i}}" class="m-0 p-0">max</label>
+                        <input type="number" class="form-control" formControlName="max" placeholder="Enter validators" id="max{{i}}" />
+                      </div>
+                      
+                      <div *ngIf="item.get('type')?.value == 'checkbox'" class="form-group">
+                        <label for="isReqTrue{{i}}" class="m-0 p-0">isRequiredTrue</label>
+                        <input type="checkbox" class="form-check-input" formControlName="isReqTrue" id="isReqTrue{{i}}" />
                       </div>
     
                     </div>
