@@ -2,57 +2,57 @@
    Base Reset + Root Variables
 ================================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    font-family: 'Roboto', 'Segoe UI', sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text-color);
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-color);
 }
 
 .font-roboto {
-    font-family: 'Roboto', 'Segoe UI', sans-serif;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
 }
 
 .font-poppins {
-    font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
 }
 
 .font-open-sans {
-    font-family: 'Open Sans', 'Segoe UI', sans-serif;
+  font-family: 'Open Sans', 'Segoe UI', sans-serif;
 }
 
 :root {
-    /* Light Theme */
-    --bg-color: #f8f9fa;
-    --text-color: #212529;
-    --card-bg: #ffffff;
-    --accent-color: #007bff;
-    --border-color: #dee2e6;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --btn-bg: #007bff;
-    --btn-text: #ffffff;
+  /* Light Theme */
+  --bg-color: #f8f9fa;
+  --text-color: #212529;
+  --card-bg: #ffffff;
+  --accent-color: #007bff;
+  --border-color: #dee2e6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --btn-bg: #007bff;
+  --btn-text: #ffffff;
 
-    /* FontAwesome Icon Color */
-    --icon-color: #333;
+  /* FontAwesome Icon Color */
+  --icon-color: #333;
 }
 
 /* Dark Mode Overrides */
 .dark-theme {
-    --bg-color: #1e1e2f;
-    --text-color: #f1f1f1;
-    --card-bg: #2c2c3e;
-    --accent-color: #66b2ff;
-    --border-color: #3a3a4d;
-    --shadow-color: rgba(0, 0, 0, 0.3);
-    --btn-bg: #66b2ff;
-    --btn-text: #1e1e2f;
-    --icon-color: #f1f1f1;
+  --bg-color: #1e1e2f;
+  --text-color: #f1f1f1;
+  --card-bg: #2c2c3e;
+  --accent-color: #66b2ff;
+  --border-color: #3a3a4d;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --btn-bg: #66b2ff;
+  --btn-text: #1e1e2f;
+  --icon-color: #f1f1f1;
 }
 
 /* ===============================
@@ -60,155 +60,179 @@ body {
   ================================= */
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 a {
-    color: var(--accent-color);
-    text-decoration: none;
+  color: var(--accent-color);
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 button,
 .btn {
-    background-color: var(--btn-bg);
-    color: var(--btn-text);
-    border: none;
-    padding: 0.5rem 1.2rem;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 6px var(--shadow-color);
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px var(--shadow-color);
 }
 
 button:hover,
 .btn:hover {
-    opacity: 0.9;
-    transform: scale(1.01);
+  opacity: 0.9;
+  transform: scale(1.01);
 }
 
 button:focus,
 .btn:focus {
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.3);
-    /* Soft focus ring */
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.3);
+  /* Soft focus ring */
 }
 
 button:active,
 .btn:active {
-    transform: scale(0.97);
-    // background-color: darken(var(--btn-bg), 5%);
-    box-shadow: 0 2px 4px var(--shadow-color);
+  transform: scale(0.97);
+  // background-color: darken(var(--btn-bg), 5%);
+  box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 
 .card,
 .custom-card {
-    background-color: var(--card-bg);
-    box-shadow: 0 4px 12px var(--shadow-color);
-    border: 1px solid var(--border-color);
-    padding: 1rem;
-    border-radius: 8px;
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 12px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: 8px;
 }
 
 /* Font Awesome Styling */
 .fa {
-    color: var(--icon-color);
-    transition: color 0.3s ease;
+  color: var(--icon-color);
+  transition: color 0.3s ease;
 }
 
 
 /* App.component.css */
 
 .layout-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-  
-  .app-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: var(--card-bg);
-    border-bottom: 1px solid var(--border-color);
-    height: 40px;
-  }
-  
-  .app-footer {
-    background-color: var(--card-bg);
-    border-top: 1px solid var(--border-color);
-    margin-top: auto;
-    font-size: 13px;
-  }
-  
-  .main-content {
-    flex-grow: 1;
-    padding-top: 1rem;
-  }
-  
-  /* Sidebars */
-  .sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    width: 250px;
-    background-color: var(--card-bg);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    padding: 1rem;
-    z-index: 1050;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .left-sidebar {
-    left: 0;
-    transform: translateX(-100%);
-  }
-  
-  .right-sidebar {
-    right: 0;
-    transform: translateX(100%);
-  }
-  
-  .left-sidebar.active {
-    transform: translateX(0);
-  }
-  
-  .right-sidebar.active {
-    transform: translateX(0);
-  }
-  
-  .close-btn-left {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-  .close-btn-right{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  height: 40px;
+}
+
+.app-footer {
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
+  font-size: 13px;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding-top: 1rem;
+}
+
+/* Sidebars */
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  background-color: var(--card-bg);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  z-index: 1050;
+  transition: transform 0.3s ease-in-out;
+}
+
+.left-sidebar {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.right-sidebar {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.left-sidebar.active {
+  transform: translateX(0);
+}
+
+.right-sidebar.active {
+  transform: translateX(0);
+}
+
+.close-btn-left {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.close-btn-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
   }
-  
-  /* Responsive Fixes */
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 100%;
-    }
-  }
-  
+}
+
+/* Dynamic Mat Tables */
+table,
+.mat-table {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.mat-header-cell,
+.mat-cell {
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mat-header-row {
+  background-color: var(--accent-color);
+  color: var(--btn-text);
+}
+
+.mat-paginator,
+.mat-paginator-page-size,
+.mat-sort-header-container {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
