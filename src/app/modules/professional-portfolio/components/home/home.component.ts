@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ResumeDownloaderService } from '../../../../services/resume-downloader.service';
+import { RoutingService } from '../../../../services/routing.service';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,7 @@ import { ResumeDownloaderService } from '../../../../services/resume-downloader.
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  showGlassLayer = false;
   phrases: string[] = [
     "I'm Thengarai Maharajan",
     "I'm a Computer Science Engineer,",
@@ -23,11 +25,13 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private resumeDownloaderService: ResumeDownloaderService
+    private resumeDownloaderService: ResumeDownloaderService,
+    public routeService : RoutingService
   ) {}
 
   ngOnInit(): void {
     setTimeout(() => {
+      this.showGlassLayer = true;
       this.startScrambleAnimation();
     }, 4000);
   }

@@ -14,6 +14,8 @@ export class MatrixRainComponent {
   private columns!: number;
   private drops!: number[];
   private colors: string[] = ['#00FF00','#FF0000','#00FF00', '#0000FF', '#00FF00', '#00FF00','#FFFFFF']; // Red, Blue, Green, White
+  private backgroundColor: string = 'rgba(0, 0, 0, 0.1)';
+  showGlassLayer = false;
 
   constructor(private elementRef: ElementRef) {}
 
@@ -21,9 +23,37 @@ export class MatrixRainComponent {
     this.canvas = this.elementRef.nativeElement.querySelector('canvas');
     this.ctx = this.canvas.getContext('2d');
     this.setupCanvas();
+  
+    this.updateThemeColors(); // Set initial theme-based colors
+  
     window.addEventListener('resize', () => this.setupCanvas());
     setInterval(() => this.drawMatrixRain(), 50);
+  
+    // Watch for theme change
+    const observer = new MutationObserver(() => this.updateThemeColors());
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    // ⏳ Show glass layer after 4s
+    setTimeout(() => {
+      this.showGlassLayer = true;
+    }, 4000);
+
   }
+
+  private updateThemeColors(): void {
+    const isDarkTheme = document.body.classList.contains('dark-theme');
+  
+    if (isDarkTheme) {
+      this.colors = ['#00FF00', '#66FF66', '#33FF33', '#FFFFFF'];
+      this.backgroundColor = 'rgba(0, 0, 0, 0.1)'; // deep black with slight fade
+    } else {
+      this.colors = ['#007bff', '#555', '#999', '#66b2ff'];
+      this.backgroundColor = 'rgba(240, 240, 255, 0.2)'; // soft pastel for light mode
+    }
+  
+    this.ctx?.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+  
 
   private setupCanvas(): void {
     this.canvas.width = window.innerWidth;
@@ -42,7 +72,7 @@ export class MatrixRainComponent {
   private drawMatrixRain(): void {
     if (!this.ctx) return;
     
-    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    this.ctx.fillStyle = this.backgroundColor;
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.font = `${this.fontSize}px monospace`;
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { externalLink } from '../../../../../enums/externalLinks.enum';
 import { environment } from '../../../../../environments/environment';
 
 @Component({
@@ -8,6 +9,6 @@ import { environment } from '../../../../../environments/environment';
 })
 export class ProfileComponent {
 
-  environmentLink : any = environment;
+  externalLinks : any = externalLink;
 
 }

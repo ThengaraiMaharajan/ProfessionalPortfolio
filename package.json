@@ -22,6 +22,9 @@
     "@angular/router": "^18.2.0",
     "@anthropic-ai/sdk": "^0.36.3",
     "@fingerprintjs/fingerprintjs": "^4.5.0",
+    "@fortawesome/angular-fontawesome": "^1.0.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@popperjs/core": "^2.11.8",
     "@types/html2canvas": "^1.0.0",
     "@types/jspdf": "^2.0.0",
@@ -32,7 +35,9 @@
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "xlsx": "^0.18.5",
-    "zone.js": "~0.14.10"
+    "zone.js": "~0.14.10",
+    "angular-highcharts": "^17.0.1",
+    "highcharts": "^11.4.7"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.1",
@@ -46,9 +51,9 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.5.2",
     "ngx-remark": "^0.0.10",
     "remark": "^15.0.1",
-    "remark-parse": "^11.0.0"
+    "remark-parse": "^11.0.0",
+    "typescript": "~5.5.2"
   }
 }

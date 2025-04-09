@@ -1,23 +1,35 @@
 <app-matrix-rain></app-matrix-rain>
 
-<app-glass-layer>
-  <div class="mt-100px d-flex justify-content-center align-items-center">
-    <div>
-      <div class="animated-text-container">
-        <div class="glass-content text-center">
-          <div class="animated-text">
-            <p *ngFor="let line of displayLines" class="animated-line">{{ line }}</p>
-          </div>
-        </div>
-      </div>
+<!-- Show glass layer only after 4 seconds -->
+<div *ngIf="showGlassLayer" class="glass-layer-wrapper">
+  <div class="glass-layer-content text-center">
 
-      <br />
-
-      <div class="animated-text-container" *ngIf="animationComplete">
-        <div class="glass-content text-center">
-          <p>I Design, Develop, Maintain, Build and Deploy Enterprise Level Web Applications</p>
-        </div>
+    <!-- Animated Text Section -->
+    <div class="animated-text-container">
+      <div class="animated-text">
+        <p *ngFor="let line of displayLines" class="animated-line">{{ line }}</p>
       </div>
     </div>
+
+    <!-- Final Message -->
+    <div class="animated-text-container mt-3" *ngIf="animationComplete">
+      <p>I Design, Develop, Maintain, Build and Deploy Enterprise Level Web Applications</p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="animated-text-container mt-3" *ngIf="animationComplete">
+      <div class="mt-4">
+        <button class="btn me-2" (click)="routeService.routeToExplore()">
+          <i class="fa fa-user me-1"></i> Explore
+        </button>
+        <button class="btn me-2" (click)="downloadResumePdf()">
+          <i class="fa fa-download me-1"></i> Resume
+        </button>
+        <button class="btn" (click)="routeService.routeToProjects()">
+          <i class="fa fa-code me-1"></i> Projects
+        </button>
+      </div>
+    </div>
+
   </div>
-</app-glass-layer>
+</div>

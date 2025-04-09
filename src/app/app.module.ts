@@ -7,21 +7,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { MatButtonModule } from '@angular/material/button'; 
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { HttpClientModule } from '@angular/common/http';
 import { RemarkModule } from 'ngx-remark';
-import { HeaderComponent } from './sharedComponents/header/header.component';
-import { SideNavComponent } from './sharedComponents/side-nav/side-nav.component';
-import { FooterComponent } from './sharedComponents/footer/footer.component';
-import { SettingsComponent } from './sharedComponents/settings/settings.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    SideNavComponent,
-    FooterComponent,
-    SettingsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +22,8 @@ import { SettingsComponent } from './sharedComponents/settings/settings.componen
     MatButtonModule,
     FormsModule,
     HttpClientModule,
-    RemarkModule
+    RemarkModule,
+    FontAwesomeModule
   ],
   providers: [
     provideAnimationsAsync()

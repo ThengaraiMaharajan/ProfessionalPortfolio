@@ -1,0 +1,34 @@
+<router-outlet />
+<div class="container">
+  <div class="row">
+    <div *ngFor="let report of reports" class="col-6">
+      <ng-container *ngIf="report.dashboardTypeID!==3 && report.dashboardTypeID!==1">
+        <div [id]="'chart-column-' + report.dashboardReportID"></div>
+      </ng-container>
+    </div>
+    <ng-container *ngFor="let report of tableReports; let i = index">
+      <div class="col-6">
+        <h4 class="text-center">{{ report.columns[0] }}</h4>
+        <div class="border">
+          <div class="table-responsive">
+            <table mat-table [dataSource]="report.dataSource" class="table table-bordered m-0 shortHeader" matSort>
+              <ng-container *ngFor="let column of report.columns" [matColumnDef]="column">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-dark">
+                  <div>
+                    <p class="text-light mb-1 text-start letterSpacing">
+                      <strong>{{ column }}</strong>
+                    </p>
+                  </div>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="report.columns"></tr>
+              <tr mat-row *matRowDef="let row; columns: report.columns;"></tr>
+            </table>
+          </div>
+          <mat-paginator [length]="report.dataSource.data.length" [pageSize]="10" [pageSizeOptions]="[10, 25, 50, 75]" showFirstLastButtons (page)="pageEvent($event, i)"></mat-paginator>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

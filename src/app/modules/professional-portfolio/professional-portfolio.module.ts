@@ -11,8 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { MatrixRainComponent } from '../../sharedComponents/matrix-rain/matrix-rain.component';
-import { GlassLayerComponent } from '../../sharedComponents/glass-layer/glass-layer.component';
+import { MatrixRainComponent } from './components/matrix-rain/matrix-rain.component';
 
 
 @NgModule({
@@ -21,8 +20,7 @@ import { GlassLayerComponent } from '../../sharedComponents/glass-layer/glass-la
     ProfileComponent,
     ProjectsComponent,
 
-    MatrixRainComponent,
-    GlassLayerComponent
+    MatrixRainComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { RoutingService } from './services/routing.service';
+import { ResumeDownloaderService } from './services/resume-downloader.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,52 +9,93 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  isSidebarVisible = false;
-  isSettingsVisible = false;  // new
-  isDarkMode = false;
 
-  constructor(private router: Router) {}
+  // var declarations
+
+  // side bar code
+  leftSidebarOpen = false;
+  rightSidebarOpen = false;
+
+  // right side bar code
+  isDarkTheme = false;
+  fontSize = 14;
+  selectedLanguage = 'en';
+
+  // footer code
+  currentYear = new Date().getFullYear();
+
+  constructor(
+    public routingService: RoutingService,
+    public resumeDownloaderService: ResumeDownloaderService,
+  ) {}
 
   ngOnInit(): void {
-    const savedTheme = localStorage.getItem('theme');
+    const theme = localStorage.getItem('theme') || 'light';
+  this.isDarkTheme = theme === 'dark';
+  document.body.classList.toggle('dark-theme', this.isDarkTheme);
+    // this.loadSettingsFromLocalStorage();
+  }
 
-  // 👉 Default to dark if nothing is saved
-  this.isDarkMode = savedTheme ? savedTheme === 'dark' : true;
+  toggleLeftSidebar() {
+    this.leftSidebarOpen = !this.leftSidebarOpen;
+  }
 
-  this.applyTheme();
+  toggleRightSidebar() {
+    this.rightSidebarOpen = !this.rightSidebarOpen;
+  }
 
-  this.router.events.subscribe(event => {
-    if (event instanceof NavigationEnd) {
-      this.isSidebarVisible = false;
-      this.isSettingsVisible = false;
+  toggleTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+    document.body.classList.toggle('dark-theme', this.isDarkTheme);
+    localStorage.setItem('theme', this.isDarkTheme ? 'dark' : 'light');
+    // this.saveSettingsToLocalStorage();
+  }
+
+  updateFontSize() {
+    document.body.style.fontSize = `${this.fontSize}px`;
+    this.saveSettingsToLocalStorage();
+  }
+
+  restoreDefaults() {
+    this.isDarkTheme = false;
+    this.fontSize = 14;
+    this.selectedLanguage = 'en';
+    document.body.classList.remove('dark-theme');
+    document.body.style.fontSize = '14px';
+    this.saveSettingsToLocalStorage();
+  }
+
+  translateSite() {
+    // Placeholder for future translation integration
+    alert(`Language set to: ${this.selectedLanguage}`);
+    this.saveSettingsToLocalStorage();
+  }
+
+  private saveSettingsToLocalStorage(): void {
+    const settings = {
+      isDarkTheme: this.isDarkTheme,
+      fontSize: this.fontSize,
+      selectedLanguage: this.selectedLanguage,
+    };
+    localStorage.setItem('siteSettings', JSON.stringify(settings));
+  }
+
+  private loadSettingsFromLocalStorage(): void {
+    const settings = localStorage.getItem('siteSettings');
+    if (settings) {
+      const parsed = JSON.parse(settings);
+      this.isDarkTheme = parsed.isDarkTheme ?? false;
+      this.fontSize = parsed.fontSize ?? 14;
+      this.selectedLanguage = parsed.selectedLanguage ?? 'en';
+
+      // Apply loaded settings
+      if (this.isDarkTheme) {
+        document.body.classList.add('dark-theme');
+      }
+      document.body.style.fontSize = `${this.fontSize}px`;
     }
-  });
   }
 
-  toggleSidebar(): void {
-    this.isSidebarVisible = !this.isSidebarVisible;
-  }
 
-  toggleSettings(): void {
-    this.isSettingsVisible = !this.isSettingsVisible;
-  }
-
-  toggleTheme(): void {
-    this.isDarkMode = !this.isDarkMode;
-    this.applyTheme();
-  }
-
-  applyTheme(): void {
-    const html = document.documentElement;
-  if (this.isDarkMode) {
-    html.classList.add('tm-dark-theme');
-    localStorage.setItem('theme', 'dark');
-    console.log('🌙 Dark theme applied');
-  } else {
-    html.classList.remove('tm-dark-theme');
-    localStorage.setItem('theme', 'light');
-    console.log('🌞 Light theme applied');
-  }
-  }
 }
 

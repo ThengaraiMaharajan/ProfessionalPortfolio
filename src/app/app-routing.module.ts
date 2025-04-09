@@ -8,8 +8,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path : 'dynamic-forms',
-    loadChildren : () => import('./modules/dynamic-forms/dynamic-forms.module').then(m => m.DynamicFormsModule)
+    path : 'dynamic-components',
+    loadChildren : () => import('./modules/dynamic-components/dynamic-component.module').then(m => m.DynamicComponentModule)
   },
   {
     path : 'time-lines-tracker',

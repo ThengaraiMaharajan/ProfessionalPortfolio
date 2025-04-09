@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SettingsComponent } from './settings.component';
+import { DynamicFormsComponent } from './dynamic-forms.component';
 
-describe('SettingsComponent', () => {
-  let component: SettingsComponent;
-  let fixture: ComponentFixture<SettingsComponent>;
+describe('DynamicFormsComponent', () => {
+  let component: DynamicFormsComponent;
+  let fixture: ComponentFixture<DynamicFormsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SettingsComponent]
+      declarations: [DynamicFormsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SettingsComponent);
+    fixture = TestBed.createComponent(DynamicFormsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

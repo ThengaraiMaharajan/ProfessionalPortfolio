@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-dynamic-form-create',
-  templateUrl: './dynamic-form-create.component.html',
-  styleUrl: './dynamic-form-create.component.css'
+  selector: 'app-dynamic-forms',
+  templateUrl: './dynamic-forms.component.html',
+  styleUrl: './dynamic-forms.component.css'
 })
-export class DynamicFormCreateComponent {
+export class DynamicFormsComponent {
 
   title = 'dynamicReactiveFormBuilding';
   dynamicForm!: FormGroup;
@@ -149,6 +149,5 @@ export class DynamicFormCreateComponent {
       this.dynamicFormValues = this.dynamicForm.value;
     }
   }
-
 
 }

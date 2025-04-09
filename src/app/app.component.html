@@ -1,7 +1,83 @@
-<app-header  (sidebarToggle)="toggleSidebar()"  (themeToggle)="toggleSettings()"  [isDarkMode]="isDarkMode"></app-header>
-<app-side-nav [visible]="isSidebarVisible" (closeSidebar)="toggleSidebar()"></app-side-nav>
-<app-settings [visible]="isSettingsVisible" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()" (close)="toggleSettings()"> </app-settings>
-<main class="tm-main-container">
-  <router-outlet></router-outlet>
-</main>
-<app-footer></app-footer>
+<div class="layout-container">
+
+    <header class="app-header d-flex  justify-content-between align-items-center px-3">
+      <div>
+        <button class="btn btn-sm" (click)="toggleLeftSidebar()">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+      <div class="fw-bold fs-5">
+        <div class="d-none d-md-flex gap-2">
+          <button class="btn btn-sm" (click)="routingService.routeToHome()" >
+            <i class="fa fa-user me-1"></i> Home
+          </button>
+          <button class="btn btn-sm" (click)="routingService.routeToExplore()" >
+            <i class="fa fa-user me-1"></i> Explore
+          </button>
+          <button class="btn btn-sm" (click)="resumeDownloaderService.downloadResume()" >
+            <i class="fa fa-download me-1"></i> Resume
+          </button>
+          <button class="btn btn-sm" (click)="routingService.routeToProjects()" >
+            <i class="fa fa-code me-1"></i> Projects
+          </button>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-sm" (click)="toggleRightSidebar()">
+          <i class="fa fa-cog"></i>
+        </button>
+      </div>
+    </header>
+  
+    <aside class="sidebar left-sidebar" [class.active]="leftSidebarOpen">
+      <button class="close-btn-left btn btn-sm" (click)="toggleLeftSidebar()">
+        <i class="fa fa-times" aria-hidden="true"></i>  
+      </button>
+    </aside>
+  
+    <aside class="sidebar right-sidebar" [class.active]="rightSidebarOpen">
+      <button class="close-btn-right btn btn-sm" (click)="toggleRightSidebar()">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+
+      <div class="mt-5">
+        <div class="mb-4">
+            <h6><i class="fa fa-moon me-2"></i>Theme</h6>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="themeToggle" (change)="toggleTheme()" [checked]="isDarkTheme">
+              <label class="form-check-label" for="themeToggle">Dark Mode</label>
+            </div>
+          </div>
+    
+          <div class="mb-4">
+            <h6><i class="fa fa-text-height me-2"></i>Font Size</h6>
+            <input type="range" class="form-range" min="12" max="20" [(ngModel)]="fontSize" (change)="updateFontSize()" />
+            <div class="small">Current: {{ fontSize }}px</div>
+          </div>
+      
+          <div class="mb-4">
+            <h6><i class="fa fa-undo me-2"></i>Restore</h6>
+            <button class="btn btn-outline-secondary btn-sm" (click)="restoreDefaults()">Restore Defaults</button>
+          </div>
+      
+          <div class="mb-4">
+            <h6><i class="fa fa-language me-2"></i>Translate</h6>
+            <select class="form-select" [(ngModel)]="selectedLanguage" (change)="translateSite()">
+              <option value="en">English</option>
+              <option value="ta">Tamil</option>
+              <option value="hi">Hindi</option>
+              <option value="fr">French</option>
+            </select>
+          </div>
+      </div>
+    </aside>
+  
+    <main class="main-content container-fluid py-3">
+      <router-outlet></router-outlet>
+    </main>
+  
+    <footer class="app-footer text-center py-1">
+      © {{ currentYear }} Thengarai Maharajan | All rights reserved.
+    </footer>
+  </div>
+  

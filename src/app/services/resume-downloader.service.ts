@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { resumeRoute } from '../../enums/resumeRoute.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ export class ResumeDownloaderService {
 
   constructor() { }
 
-  private resumeUrl = 'assets/Resumes/ThengaraiMaharajan-FrontEnd-Angular-2.8years.pdf';
+  private resumeUrl = resumeRoute.resume;
 
   downloadResume() {
     window.open(this.resumeUrl, '_blank');
