@@ -19,22 +19,22 @@ export class ProjectsComponent {
     {
       title: 'Dynamic Components - Dashboards',
       description: 'Highcharts-powered dashboard that renders various chart types (bar, line, column) dynamically from JSON configurations. Designed for enterprise-level data visualizations with dark/light theme support, responsive design, and reusable chart structures',
-      route: '/dynamic-dashboards',
-      demoLink: '/dynamic-dashboards',
+      route: '/dynamic-components/dashboards',
+      demoLink: '/dynamic-components/dashboards',
       codeLink: 'https://github.com/ThengaraiMaharajan/Angular_DynamicDashboards'
     },
     {
       title: 'Dynamic Components - Forms',
       description: 'A JSON-driven Angular tool that builds reactive forms on the fly with advanced validation rules, conditional fields, and user-configurable structure. Supports form previews, multiple input types, nested validations, and real-time form rendering logic.',
-      route: '/dynamic-forms',
-      demoLink: '/dynamic-forms',
+      route: '/dynamic-components/forms',
+      demoLink: '/dynamic-components/forms',
       codeLink: 'https://github.com/ThengaraiMaharajan/Angular_ReactiveFormBuilder'
     },
     {
       title: 'Dynamic Components - Tables',
       description: 'A powerful table rendering system built with Angular Material. Generates dynamic tables with customizable headers, sorting, pagination, responsive design, and support for external/internal links. Perfect for handling tabular datasets from various APIs.',
-      route: '/dynamic-tables',
-      demoLink: '/dynamic-tables',
+      route: '/dynamic-components/tables',
+      demoLink: '/dynamic-components/tables',
       codeLink: 'https://github.com/ThengaraiMaharajan/Angular_DynamicTables'
     },
     {
