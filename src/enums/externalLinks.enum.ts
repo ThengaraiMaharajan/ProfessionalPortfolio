@@ -11,6 +11,7 @@ export enum externalLink {
     jerusalem = 'https://www.jerusalemengg.ac.in/',
 
     edgeDet = 'https://thengaraimaharajandev.github.io/Image-Edge-Detection/',
+    calculators = 'https://thengaraimaharajan.github.io/Calculators/',
 
     fccRWD  = 'https://www.freecodecamp.org/certification/Thengarai_Maharajan/responsive-web-design',
     fccJS = 'https://www.freecodecamp.org/certification/Thengarai_Maharajan/javascript-algorithms-and-data-structures-v8'

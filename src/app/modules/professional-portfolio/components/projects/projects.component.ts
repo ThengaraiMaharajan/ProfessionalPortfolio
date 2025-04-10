@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { externalLink } from '../../../../../enums/externalLinks.enum';
+
 
 interface Project {
   title: string;
@@ -61,17 +63,18 @@ export class ProjectsComponent {
     {
       title: 'Edge Detection & Cropper',
       description: 'An OpenCV-based image processing utility for document scanning. Features real-time edge detection and cropping capabilities using HTML5 Canvas. Deployed as a lightweight, standalone app for browser-based document digitization.',
-      route: 'https://thengaraimaharajandev.github.io/Image-Edge-Detection/',
+      route: externalLink.edgeDet,
       external: true,
-      demoLink: 'https://thengaraimaharajandev.github.io/Image-Edge-Detection/',
+      demoLink: externalLink.edgeDet,
       codeLink: 'https://github.com/ThengaraiMaharajan/ImageCropDetection'
     },
     {
       title: 'Financial Step-Up Calculators',
       description: 'Web-based financial tools for long-term investment planning. Includes an NPS calculator for retirement corpus estimation and a step-up investment simulator. Built using Bootstrap and vanilla JavaScript, with clean UI and export-friendly tables.',
-      route: '/calculators',
-      demoLink: '/calculators',
-      codeLink: 'https://github.com/ThengaraiMaharajan/Angular_InvestmentTools'
+      route: externalLink.calculators,
+      external: true,
+      demoLink: externalLink.calculators,
+      codeLink: 'https://github.com/ThengaraiMaharajan/Calculators'
     }
   ];
 }
