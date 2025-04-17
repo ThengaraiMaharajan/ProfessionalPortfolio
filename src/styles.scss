@@ -15,6 +15,10 @@ body {
   color: var(--text-color);
 }
 
+body, h1, h2, h3, h4, h5, h6, p, ul, li, a, span, div {
+  color: var(--text-color);
+}
+
 .font-roboto {
   font-family: 'Roboto', 'Segoe UI', sans-serif;
 }
@@ -302,4 +306,20 @@ table,
 .skill-item:hover img {
   transform: scale(1.1);
   filter: grayscale(0%);
+}
+// profile view page end
+
+.card,
+.custom-card {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.card a,
+.card-body a {
+  color: var(--accent-color);
+}
+
+.skill-item {
+  color: var(--text-color);
 }
